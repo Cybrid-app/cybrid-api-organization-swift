@@ -27,7 +27,7 @@ let package = Package(
         .target(
             name: "CybridApiOrganizationSwift",
             dependencies: ["AnyCodable", ],
-            path: "CybridApiOrganizationSwift/APIClient/"
+            path: "CybridApiOrganizationSwift/APIClient"
         ),
     ]
 )

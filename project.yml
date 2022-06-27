@@ -4,7 +4,7 @@ targets:
     type: framework
     platform: iOS
     deploymentTarget: "9.0"
-    sources: [CybridApiOrganizationSwift/APIClient/]
+    sources: [CybridApiOrganizationSwift/APIClient]
     info:
       path: ./Info.plist
       version: 0.26.3
