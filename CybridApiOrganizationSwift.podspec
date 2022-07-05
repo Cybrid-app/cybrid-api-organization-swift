@@ -10,7 +10,7 @@ Pod::Spec.new do |s|
   s.license = { :type => "Apache-2.0", :file => "LICENSE"}
   s.homepage = 'https://github.com/Cybrid-app/cybrid-api-organization-swift'
   s.summary = 'Cybrid iOS Custom API'
-  s.description = 'Cybrid Organization API for Swift'
+  s.description = 'Cybrid Organization API for Swift123'
   s.source_files = 'CybridApiOrganizationSwift/APIClient/**/*.swift'
   s.dependency 'AnyCodable-FlightSchool', '~> 0.6.1'
 end
