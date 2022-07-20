@@ -13,13 +13,13 @@ import AnyCodable
 @objc public class ErrorResponseOrganizationModel: NSObject, Codable, JSONEncodable {
 
     /** Status code for Http Request */
-    public var status: Int
+    public var status: String
     /** Error message */
     public var errorMessage: String
     /** Message code for Error */
     public var messageCode: String
 
-    public init(status: Int, errorMessage: String, messageCode: String) {
+    public init(status: String, errorMessage: String, messageCode: String) {
         self.status = status
         self.errorMessage = errorMessage
         self.messageCode = messageCode
