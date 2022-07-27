@@ -56,6 +56,7 @@ The following scopes are available on the platform and can be requested when gen
 | Symbols       | prices:read        |                      |                   | Bank               |
 | Quotes        | quotes:read        |                      | quotes:execute    | Bank               |
 | Trades        | trades:read        |                      | trades:execute    | Bank               |
+| Rewards       | rewards:read       |                      | rewards:execute   | Bank               |
 
 ## Organizations
 
