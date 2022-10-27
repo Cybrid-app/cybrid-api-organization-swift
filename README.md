@@ -87,30 +87,32 @@ The following scopes are available on the platform and can be requested when gen
 | Trades                 | trades:read (Organization, Bank, Customer)                 |                                    | trades:execute (Bank)                           |
 | Rewards                | rewards:read (Bank, Customer)                              |                                    | rewards:execute (Bank)                          |
 | External bank accounts | external_bank_accounts:read (Organization, Bank, Customer) |                                    | external_bank_accounts:execute (Bank, Customer) |
+| Workflows              | workflows:read (Organization, Bank, Customer)              |                                    | workflows:execute (Bank, Customer)              |
 
 ## Available Endpoints
 
 The available APIs for the [Identity](<api_idp_swagger_ui_url>), [Organization](<api_platform_organization_swagger_ui_url>) and [Bank](<api_platform_bank_swagger_ui_url>) API services are listed below:
 
-| API Service  | Model               | API Endpoint Path              | Description                                                                                       |
-|--------------|---------------------|--------------------------------|---------------------------------------------------------------------------------------------------|
-| Identity     | Bank                | /api/bank_applications         | Create and list banks                                                                             |
-| Identity     | Organization        | /api/organization_applications | Create and list organizations                                                                     |
-| Identity     | CustomerToken       | /api/customer_tokens           | Create customer JWT access tokens                                                                 |
-| Organization | Organization        | /api/organizations             | APIs to retrieve and update organization name                                                     |
-| Bank         | Asset               | /api/assets                    | Get a list of assets supported by the platform (ex: BTC, ETH)                                     |
-| Bank         | VerificationKey     | /api/bank_verification_keys    | Create, list and retrive verification keys, used for signing identities                           |
-| Bank         | Banks               | /api/banks                     | Create, update and list banks, the parent to customers, accounts, etc                             |
-| Bank         | FeeConfiguration    | /api/fee_configurations        | Create and list bank fees (spread or fixed)                                                       |
-| Bank         | Customers           | /api/customers                 | Create and list customers                                                                         |
-| Bank         | IdentityRecord      | /api/identity_records          | Create and list identity records, which are attached to customers for KYC                         |
-| Bank         | Accounts            | /api/accounts                  | Create and list accounts, which hold a specific asset for a customers                             |
-| Bank         | Symbols             | /api/symbols                   | Get a list of symbols supported for trade (ex: BTC-USD)                                           |
-| Bank         | Prices              | /api/prices                    | Get the current prices for assets on the platform                                                 |
-| Bank         | Quotes              | /api/quotes                    | Create and list quotes, which are required to execute trades                                      |
-| Bank         | Trades              | /api/trades                    | Create and list trades, which buy or sell cryptocurrency                                          |
-| Bank         | Rewards             | /api/rewards                   | Create a new reward (automates quote/trade for simplicity)                                        |
-| Bank         | ExternalBankAccount | /api/external_bank_account     | Create, get and list external bank accounts, which connect customer bank accounts to the platform |
+| API Service  | Model                | API Endpoint Path              | Description                                                                                       |
+|--------------|----------------------|--------------------------------|---------------------------------------------------------------------------------------------------|
+| Identity     | Bank                 | /api/bank_applications         | Create and list banks                                                                             |
+| Identity     | Organization         | /api/organization_applications | Create and list organizations                                                                     |
+| Identity     | CustomerToken        | /api/customer_tokens           | Create customer JWT access tokens                                                                 |
+| Organization | Organization         | /api/organizations             | APIs to retrieve and update organization name                                                     |
+| Bank         | Asset                | /api/assets                    | Get a list of assets supported by the platform (ex: BTC, ETH)                                     |
+| Bank         | VerificationKey      | /api/bank_verification_keys    | Create, list and retrive verification keys, used for signing identities                           |
+| Bank         | Banks                | /api/banks                     | Create, update and list banks, the parent to customers, accounts, etc                             |
+| Bank         | FeeConfiguration     | /api/fee_configurations        | Create and list bank fees (spread or fixed)                                                       |
+| Bank         | Customers            | /api/customers                 | Create and list customers                                                                         |
+| Bank         | IdentityRecord       | /api/identity_records          | Create and list identity records, which are attached to customers for KYC                         |
+| Bank         | Accounts             | /api/accounts                  | Create and list accounts, which hold a specific asset for a customers                             |
+| Bank         | Symbols              | /api/symbols                   | Get a list of symbols supported for trade (ex: BTC-USD)                                           |
+| Bank         | Prices               | /api/prices                    | Get the current prices for assets on the platform                                                 |
+| Bank         | Quotes               | /api/quotes                    | Create and list quotes, which are required to execute trades                                      |
+| Bank         | Trades               | /api/trades                    | Create and list trades, which buy or sell cryptocurrency                                          |
+| Bank         | Rewards              | /api/rewards                   | Create a new reward (automates quote/trade for simplicity)                                        |
+| Bank         | ExternalBankAccounts | /api/external_bank_accounts    | Create, get and list external bank accounts, which connect customer bank accounts to the platform |
+| Bank         | Workflows            | /api/workflows                 | Create, get and list workflows                                                                    |
 
 ## Understanding Object Models & Endpoints
 
