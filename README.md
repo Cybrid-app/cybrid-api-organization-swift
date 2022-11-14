@@ -88,6 +88,7 @@ The following scopes are available on the platform and can be requested when gen
 | Rewards                | rewards:read (Bank, Customer)                              |                                    | rewards:execute (Bank)                          |
 | External bank accounts | external_bank_accounts:read (Organization, Bank, Customer) |                                    | external_bank_accounts:execute (Bank, Customer) |
 | Workflows              | workflows:read (Organization, Bank, Customer)              |                                    | workflows:execute (Bank, Customer)              |
+| Transfers              | workflows:read (Organization, Bank, Customer)              |                                    | workflows:execute (Bank, Customer)              |
 
 ## Available Endpoints
 
@@ -113,6 +114,7 @@ The available APIs for the [Identity](<api_idp_swagger_ui_url>), [Organization](
 | Bank         | Rewards              | /api/rewards                   | Create a new reward (automates quote/trade for simplicity)                                        |
 | Bank         | ExternalBankAccounts | /api/external_bank_accounts    | Create, get and list external bank accounts, which connect customer bank accounts to the platform |
 | Bank         | Workflows            | /api/workflows                 | Create, get and list workflows                                                                    |
+| Bank         | Transfers            | /api/transfers                 | Create, get and list transfers                                                                    |
 
 ## Understanding Object Models & Endpoints
 
