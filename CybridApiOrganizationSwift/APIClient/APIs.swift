@@ -14,7 +14,7 @@ import Foundation
 public typealias CybridApiOrganizationSwift = CybridApiOrganizationSwiftAPI
 
 open class CybridApiOrganizationSwiftAPI {
-    public static var basePath = "http://api-organization.cybrid.local"
+    public static var basePath = "https://organization.sandbox.cybrid.app"
     public static var customHeaders: [String: String] = [:]
     public static var credential: URLCredential?
     public static var requestBuilderFactory: RequestBuilderFactory = URLSessionRequestBuilderFactory()

@@ -1,6 +1,6 @@
 # OrganizationsAPI
 
-All URIs are relative to *http://api-organization.cybrid.local*
+All URIs are relative to *https://organization.sandbox.cybrid.app*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
