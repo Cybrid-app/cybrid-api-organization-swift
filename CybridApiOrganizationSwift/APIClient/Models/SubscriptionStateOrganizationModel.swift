@@ -14,7 +14,5 @@ public enum SubscriptionStateOrganizationModel: String, Codable, CaseIterable, C
     case storing = "storing"
     case completed = "completed"
     case failed = "failed"
-    case deleting = "deleting"
-    case deleted = "deleted"
     case unknownDefaultOpenApi = "unknown_default_open_api"
 }

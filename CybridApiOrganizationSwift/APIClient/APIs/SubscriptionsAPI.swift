@@ -70,11 +70,11 @@ import AnyCodable
      - parameter completion: completion handler to receive the result
      */
     @discardableResult
-    open class func deleteSubscription(subscriptionGuid: String, apiResponseQueue: DispatchQueue = CybridApiOrganizationSwiftAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<SubscriptionOrganizationModel, ErrorResponse>) -> Void)) -> RequestTask {
+    open class func deleteSubscription(subscriptionGuid: String, apiResponseQueue: DispatchQueue = CybridApiOrganizationSwiftAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<Void, ErrorResponse>) -> Void)) -> RequestTask {
         return deleteSubscriptionWithRequestBuilder(subscriptionGuid: subscriptionGuid).execute(apiResponseQueue) { result in
             switch result {
-            case let .success(response):
-                completion(.success(response.body))
+            case .success:
+                completion(.success(()))
             case let .failure(error):
                 completion(.failure(error))
             }
@@ -92,9 +92,9 @@ import AnyCodable
        - type: oauth2
        - name: oauth2
      - parameter subscriptionGuid: (path) Identifier for the subscription. 
-     - returns: RequestBuilder<SubscriptionOrganizationModel> 
+     - returns: RequestBuilder<Void> 
      */
-    open class func deleteSubscriptionWithRequestBuilder(subscriptionGuid: String) -> RequestBuilder<SubscriptionOrganizationModel> {
+    open class func deleteSubscriptionWithRequestBuilder(subscriptionGuid: String) -> RequestBuilder<Void> {
         var localVariablePath = "/api/subscriptions/{subscription_guid}"
         let subscriptionGuidPreEscape = "\(APIHelper.mapValueToPathItem(subscriptionGuid))"
         let subscriptionGuidPostEscape = subscriptionGuidPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -110,7 +110,7 @@ import AnyCodable
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<SubscriptionOrganizationModel>.Type = CybridApiOrganizationSwiftAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<Void>.Type = CybridApiOrganizationSwiftAPI.requestBuilderFactory.getNonDecodableBuilder()
 
         return localVariableRequestBuilder.init(method: "DELETE", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters)
     }

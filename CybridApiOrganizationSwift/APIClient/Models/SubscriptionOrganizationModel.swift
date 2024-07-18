@@ -26,7 +26,7 @@ import AnyCodable
     public var url: String
     /** The environment that the subscription is configured for; one of sandbox or production. */
     public var environment: String
-    /** The state of the subscription; one of storing, completed, failed, deleting, or deleted. */
+    /** The state of the subscription; one of storing, completed, or failed. */
     public var state: String
     /** The failure code of a subscription (if any) */
     public var failureCode: String?

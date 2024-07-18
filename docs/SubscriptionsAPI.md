@@ -62,7 +62,7 @@ Name | Type | Description  | Notes
 
 # **deleteSubscription**
 ```swift
-    open class func deleteSubscription(subscriptionGuid: String, completion: @escaping (_ data: SubscriptionOrganizationModel?, _ error: Error?) -> Void)
+    open class func deleteSubscription(subscriptionGuid: String, completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
 ```
 
 Delete Subscription
@@ -97,7 +97,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**SubscriptionOrganizationModel**](SubscriptionOrganizationModel.md)
+Void (empty response body)
 
 ### Authorization
 
