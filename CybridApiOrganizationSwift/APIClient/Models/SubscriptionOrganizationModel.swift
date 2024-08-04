@@ -18,12 +18,18 @@ import AnyCodable
     }
     /** Auto-generated unique identifier for the subscription. */
     public var guid: String
+    /** The organization guid for the subscription. */
+    public var organizationGuid: String?
     /** Name provided for the subscription. */
     public var name: String
     /** The type of subscription. */
     public var type: TypeOrganizationModel
     /** The url for the subscription. */
     public var url: String
+    /** Subscription private signing key. */
+    public var signingKey: String?
+    /** ISO8601 datetime the deliveries started failing. */
+    public var deliveriesFailingSince: Date?
     /** The environment that the subscription is configured for; one of sandbox or production. */
     public var environment: String
     /** The state of the subscription; one of storing, completed, or failed. */
@@ -35,11 +41,14 @@ import AnyCodable
     /** ISO8601 datetime the record was last updated at. */
     public var updatedAt: Date?
 
-    public init(guid: String, name: String, type: TypeOrganizationModel, url: String, environment: String, state: String, failureCode: String? = nil, createdAt: Date? = nil, updatedAt: Date? = nil) {
+    public init(guid: String, organizationGuid: String? = nil, name: String, type: TypeOrganizationModel, url: String, signingKey: String? = nil, deliveriesFailingSince: Date? = nil, environment: String, state: String, failureCode: String? = nil, createdAt: Date? = nil, updatedAt: Date? = nil) {
         self.guid = guid
+        self.organizationGuid = organizationGuid
         self.name = name
         self.type = type
         self.url = url
+        self.signingKey = signingKey
+        self.deliveriesFailingSince = deliveriesFailingSince
         self.environment = environment
         self.state = state
         self.failureCode = failureCode
@@ -49,9 +58,12 @@ import AnyCodable
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
         case guid
+        case organizationGuid = "organization_guid"
         case name
         case type
         case url
+        case signingKey = "signing_key"
+        case deliveriesFailingSince = "deliveries_failing_since"
         case environment
         case state
         case failureCode = "failure_code"
@@ -64,9 +76,12 @@ import AnyCodable
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(guid, forKey: .guid)
+        try container.encodeIfPresent(organizationGuid, forKey: .organizationGuid)
         try container.encode(name, forKey: .name)
         try container.encode(type, forKey: .type)
         try container.encode(url, forKey: .url)
+        try container.encodeIfPresent(signingKey, forKey: .signingKey)
+        try container.encodeIfPresent(deliveriesFailingSince, forKey: .deliveriesFailingSince)
         try container.encode(environment, forKey: .environment)
         try container.encode(state, forKey: .state)
         try container.encodeIfPresent(failureCode, forKey: .failureCode)
