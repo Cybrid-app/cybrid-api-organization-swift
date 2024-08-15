@@ -34,7 +34,7 @@ import AnyCodable
     /**
      Create SubscriptionDelivery
      - POST /api/subscription_deliveries/
-     - Creates a SubscriptionDelivery.  post  Required scope: **subscription_events:execute
+     - Creates a SubscriptionDelivery.  ## Subscription Delivery  Create a SubscriptionDelivery to retry the delivery of a SubscriptionEvent to a Subscription.  ## State  | State | Description | |-------|-------------| | storing | The Platform is storing the SubscriptionDelivery details in our private store | | completed | The Platform has successfully delivered the SubscriptionEvent to specified Subscription | | failing | The Platform is failing to deliver the SubscriptionDelivery,  a new attempt will be made (see `next_attempt_at`) | | failed | The Platform has failed to deliver the SubscriptionDelivery, no more attempts will be made |    Required scope: **subscription_events:execute
      - BASIC:
        - type: http
        - name: BearerAuth
