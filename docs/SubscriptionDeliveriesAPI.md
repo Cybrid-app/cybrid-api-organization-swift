@@ -11,7 +11,7 @@ Method | HTTP request | Description
 
 # **createSubscriptionDelivery**
 ```swift
-    open class func createSubscriptionDelivery(postSubscriptionDeliveryOrganizationModel: PostSubscriptionDeliveryOrganizationModel, completion: @escaping (_ data: SubscriptionDeliveryOrganizationModel?, _ error: Error?) -> Void)
+    open class func createSubscriptionDelivery(postSubscriptionDelivery: PostSubscriptionDelivery, completion: @escaping (_ data: SubscriptionDelivery?, _ error: Error?) -> Void)
 ```
 
 Create SubscriptionDelivery
@@ -23,10 +23,10 @@ Creates a SubscriptionDelivery.  ## Subscription Delivery  Create a Subscription
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import CybridApiOrganizationSwift
 
-let postSubscriptionDeliveryOrganizationModel = PostSubscriptionDelivery(subscriptionEventGuid: "subscriptionEventGuid_example", subscriptionGuid: "subscriptionGuid_example") // PostSubscriptionDeliveryOrganizationModel | 
+let postSubscriptionDelivery = PostSubscriptionDelivery(subscriptionEventGuid: "subscriptionEventGuid_example", subscriptionGuid: "subscriptionGuid_example") // PostSubscriptionDelivery | 
 
 // Create SubscriptionDelivery
-SubscriptionDeliveriesAPI.createSubscriptionDelivery(postSubscriptionDeliveryOrganizationModel: postSubscriptionDeliveryOrganizationModel) { (response, error) in
+SubscriptionDeliveriesAPI.createSubscriptionDelivery(postSubscriptionDelivery: postSubscriptionDelivery) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -42,11 +42,11 @@ SubscriptionDeliveriesAPI.createSubscriptionDelivery(postSubscriptionDeliveryOrg
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **postSubscriptionDeliveryOrganizationModel** | [**PostSubscriptionDeliveryOrganizationModel**](PostSubscriptionDeliveryOrganizationModel.md) |  | 
+ **postSubscriptionDelivery** | [**PostSubscriptionDelivery**](PostSubscriptionDelivery.md) |  | 
 
 ### Return type
 
-[**SubscriptionDeliveryOrganizationModel**](SubscriptionDeliveryOrganizationModel.md)
+[**SubscriptionDelivery**](SubscriptionDelivery.md)
 
 ### Authorization
 
@@ -61,7 +61,7 @@ Name | Type | Description  | Notes
 
 # **getSubscriptionDelivery**
 ```swift
-    open class func getSubscriptionDelivery(subscriptionDeliveryGuid: String, completion: @escaping (_ data: SubscriptionDeliveryOrganizationModel?, _ error: Error?) -> Void)
+    open class func getSubscriptionDelivery(subscriptionDeliveryGuid: String, completion: @escaping (_ data: SubscriptionDelivery?, _ error: Error?) -> Void)
 ```
 
 Get Subscription Delivery 
@@ -96,7 +96,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**SubscriptionDeliveryOrganizationModel**](SubscriptionDeliveryOrganizationModel.md)
+[**SubscriptionDelivery**](SubscriptionDelivery.md)
 
 ### Authorization
 
@@ -111,7 +111,7 @@ Name | Type | Description  | Notes
 
 # **listSubscriptionDeliveries**
 ```swift
-    open class func listSubscriptionDeliveries(page: Int? = nil, perPage: Int? = nil, guid: String? = nil, subscriptionEventGuid: String? = nil, subscriptionGuid: String? = nil, completion: @escaping (_ data: SubscriptionDeliveryListOrganizationModel?, _ error: Error?) -> Void)
+    open class func listSubscriptionDeliveries(page: Int? = nil, perPage: Int? = nil, guid: String? = nil, subscriptionEventGuid: String? = nil, subscriptionGuid: String? = nil, completion: @escaping (_ data: SubscriptionDeliveryList?, _ error: Error?) -> Void)
 ```
 
 Get subscription deliveries list
@@ -154,7 +154,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**SubscriptionDeliveryListOrganizationModel**](SubscriptionDeliveryListOrganizationModel.md)
+[**SubscriptionDeliveryList**](SubscriptionDeliveryList.md)
 
 ### Authorization
 

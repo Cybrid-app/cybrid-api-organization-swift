@@ -15,13 +15,13 @@ import AnyCodable
     /**
      Create SubscriptionDelivery
      
-     - parameter postSubscriptionDeliveryOrganizationModel: (body)  
+     - parameter postSubscriptionDelivery: (body)  
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the result
      */
     @discardableResult
-    open class func createSubscriptionDelivery(postSubscriptionDeliveryOrganizationModel: PostSubscriptionDeliveryOrganizationModel, apiResponseQueue: DispatchQueue = CybridApiOrganizationSwiftAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<SubscriptionDeliveryOrganizationModel, ErrorResponse>) -> Void)) -> RequestTask {
-        return createSubscriptionDeliveryWithRequestBuilder(postSubscriptionDeliveryOrganizationModel: postSubscriptionDeliveryOrganizationModel).execute(apiResponseQueue) { result in
+    open class func createSubscriptionDelivery(postSubscriptionDelivery: PostSubscriptionDelivery, apiResponseQueue: DispatchQueue = CybridApiOrganizationSwiftAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<SubscriptionDelivery, ErrorResponse>) -> Void)) -> RequestTask {
+        return createSubscriptionDeliveryWithRequestBuilder(postSubscriptionDelivery: postSubscriptionDelivery).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
                 completion(.success(response.body))
@@ -41,13 +41,13 @@ import AnyCodable
      - OAuth:
        - type: oauth2
        - name: oauth2
-     - parameter postSubscriptionDeliveryOrganizationModel: (body)  
-     - returns: RequestBuilder<SubscriptionDeliveryOrganizationModel> 
+     - parameter postSubscriptionDelivery: (body)  
+     - returns: RequestBuilder<SubscriptionDelivery> 
      */
-    open class func createSubscriptionDeliveryWithRequestBuilder(postSubscriptionDeliveryOrganizationModel: PostSubscriptionDeliveryOrganizationModel) -> RequestBuilder<SubscriptionDeliveryOrganizationModel> {
+    open class func createSubscriptionDeliveryWithRequestBuilder(postSubscriptionDelivery: PostSubscriptionDelivery) -> RequestBuilder<SubscriptionDelivery> {
         let localVariablePath = "/api/subscription_deliveries/"
         let localVariableURLString = CybridApiOrganizationSwiftAPI.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: postSubscriptionDeliveryOrganizationModel)
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: postSubscriptionDelivery)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
@@ -57,7 +57,7 @@ import AnyCodable
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<SubscriptionDeliveryOrganizationModel>.Type = CybridApiOrganizationSwiftAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<SubscriptionDelivery>.Type = CybridApiOrganizationSwiftAPI.requestBuilderFactory.getBuilder()
 
         return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters)
     }
@@ -70,7 +70,7 @@ import AnyCodable
      - parameter completion: completion handler to receive the result
      */
     @discardableResult
-    open class func getSubscriptionDelivery(subscriptionDeliveryGuid: String, apiResponseQueue: DispatchQueue = CybridApiOrganizationSwiftAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<SubscriptionDeliveryOrganizationModel, ErrorResponse>) -> Void)) -> RequestTask {
+    open class func getSubscriptionDelivery(subscriptionDeliveryGuid: String, apiResponseQueue: DispatchQueue = CybridApiOrganizationSwiftAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<SubscriptionDelivery, ErrorResponse>) -> Void)) -> RequestTask {
         return getSubscriptionDeliveryWithRequestBuilder(subscriptionDeliveryGuid: subscriptionDeliveryGuid).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
@@ -92,9 +92,9 @@ import AnyCodable
        - type: oauth2
        - name: oauth2
      - parameter subscriptionDeliveryGuid: (path) Identifier for the subscription delivery. 
-     - returns: RequestBuilder<SubscriptionDeliveryOrganizationModel> 
+     - returns: RequestBuilder<SubscriptionDelivery> 
      */
-    open class func getSubscriptionDeliveryWithRequestBuilder(subscriptionDeliveryGuid: String) -> RequestBuilder<SubscriptionDeliveryOrganizationModel> {
+    open class func getSubscriptionDeliveryWithRequestBuilder(subscriptionDeliveryGuid: String) -> RequestBuilder<SubscriptionDelivery> {
         var localVariablePath = "/api/subscription_deliveries/{subscription_delivery_guid}"
         let subscriptionDeliveryGuidPreEscape = "\(APIHelper.mapValueToPathItem(subscriptionDeliveryGuid))"
         let subscriptionDeliveryGuidPostEscape = subscriptionDeliveryGuidPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -110,7 +110,7 @@ import AnyCodable
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<SubscriptionDeliveryOrganizationModel>.Type = CybridApiOrganizationSwiftAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<SubscriptionDelivery>.Type = CybridApiOrganizationSwiftAPI.requestBuilderFactory.getBuilder()
 
         return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters)
     }
@@ -127,7 +127,7 @@ import AnyCodable
      - parameter completion: completion handler to receive the result
      */
     @discardableResult
-    open class func listSubscriptionDeliveries(page: Int? = nil, perPage: Int? = nil, guid: String? = nil, subscriptionEventGuid: String? = nil, subscriptionGuid: String? = nil, apiResponseQueue: DispatchQueue = CybridApiOrganizationSwiftAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<SubscriptionDeliveryListOrganizationModel, ErrorResponse>) -> Void)) -> RequestTask {
+    open class func listSubscriptionDeliveries(page: Int? = nil, perPage: Int? = nil, guid: String? = nil, subscriptionEventGuid: String? = nil, subscriptionGuid: String? = nil, apiResponseQueue: DispatchQueue = CybridApiOrganizationSwiftAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<SubscriptionDeliveryList, ErrorResponse>) -> Void)) -> RequestTask {
         return listSubscriptionDeliveriesWithRequestBuilder(page: page, perPage: perPage, guid: guid, subscriptionEventGuid: subscriptionEventGuid, subscriptionGuid: subscriptionGuid).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
@@ -153,9 +153,9 @@ import AnyCodable
      - parameter guid: (query) Comma separated subscription_delivery_guids to list subscription deliveries for. (optional)
      - parameter subscriptionEventGuid: (query) Comma separated subscription_event_guids to list subscription deliveries for. (optional)
      - parameter subscriptionGuid: (query) Comma separated subscription_guids to list subscription deliveries for. (optional)
-     - returns: RequestBuilder<SubscriptionDeliveryListOrganizationModel> 
+     - returns: RequestBuilder<SubscriptionDeliveryList> 
      */
-    open class func listSubscriptionDeliveriesWithRequestBuilder(page: Int? = nil, perPage: Int? = nil, guid: String? = nil, subscriptionEventGuid: String? = nil, subscriptionGuid: String? = nil) -> RequestBuilder<SubscriptionDeliveryListOrganizationModel> {
+    open class func listSubscriptionDeliveriesWithRequestBuilder(page: Int? = nil, perPage: Int? = nil, guid: String? = nil, subscriptionEventGuid: String? = nil, subscriptionGuid: String? = nil) -> RequestBuilder<SubscriptionDeliveryList> {
         let localVariablePath = "/api/subscription_deliveries"
         let localVariableURLString = CybridApiOrganizationSwiftAPI.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
@@ -175,7 +175,7 @@ import AnyCodable
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<SubscriptionDeliveryListOrganizationModel>.Type = CybridApiOrganizationSwiftAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<SubscriptionDeliveryList>.Type = CybridApiOrganizationSwiftAPI.requestBuilderFactory.getBuilder()
 
         return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters)
     }

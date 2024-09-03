@@ -1,4 +1,4 @@
-# PostSubscriptionOrganizationModel
+# PostSubscription
 
 ## Properties
 Name | Type | Description | Notes
