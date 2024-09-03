@@ -1,11 +1,10 @@
-# ErrorResponseOrganizationModel
+# PostSubscriptionDelivery
 
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**status** | **Int** | Status code for Http Request | 
-**errorMessage** | **String** | Error message | 
-**messageCode** | **String** | Message code for Error | 
+**subscriptionEventGuid** | **String** | The event guid . | 
+**subscriptionGuid** | **String** | The subscription guid. | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

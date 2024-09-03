@@ -1,4 +1,4 @@
-# OrganizationOrganizationModel
+# Organization
 
 ## Properties
 Name | Type | Description | Notes

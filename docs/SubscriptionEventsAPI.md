@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 # **getSubscriptionEvent**
 ```swift
-    open class func getSubscriptionEvent(subscriptionEventGuid: String, completion: @escaping (_ data: SubscriptionEventOrganizationModel?, _ error: Error?) -> Void)
+    open class func getSubscriptionEvent(subscriptionEventGuid: String, completion: @escaping (_ data: SubscriptionEvent?, _ error: Error?) -> Void)
 ```
 
 Get Subscription Event 
@@ -45,7 +45,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**SubscriptionEventOrganizationModel**](SubscriptionEventOrganizationModel.md)
+[**SubscriptionEvent**](SubscriptionEvent.md)
 
 ### Authorization
 
@@ -60,7 +60,7 @@ Name | Type | Description  | Notes
 
 # **listSubscriptionEvents**
 ```swift
-    open class func listSubscriptionEvents(page: Int? = nil, perPage: Int? = nil, guid: String? = nil, completion: @escaping (_ data: SubscriptionEventListOrganizationModel?, _ error: Error?) -> Void)
+    open class func listSubscriptionEvents(page: Int? = nil, perPage: Int? = nil, guid: String? = nil, completion: @escaping (_ data: SubscriptionEventList?, _ error: Error?) -> Void)
 ```
 
 Get subscription events list
@@ -99,7 +99,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**SubscriptionEventListOrganizationModel**](SubscriptionEventListOrganizationModel.md)
+[**SubscriptionEventList**](SubscriptionEventList.md)
 
 ### Authorization
 
