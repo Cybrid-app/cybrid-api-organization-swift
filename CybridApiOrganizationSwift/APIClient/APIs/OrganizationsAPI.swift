@@ -20,7 +20,7 @@ import AnyCodable
      - parameter completion: completion handler to receive the result
      */
     @discardableResult
-    open class func getOrganization(organizationGuid: String, apiResponseQueue: DispatchQueue = CybridApiOrganizationSwiftAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<Organization, ErrorResponse>) -> Void)) -> RequestTask {
+    open class func getOrganization(organizationGuid: String, apiResponseQueue: DispatchQueue = CybridApiOrganizationSwiftAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<OrganizationOrganizationModel, ErrorResponse>) -> Void)) -> RequestTask {
         return getOrganizationWithRequestBuilder(organizationGuid: organizationGuid).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
@@ -42,9 +42,9 @@ import AnyCodable
        - type: oauth2
        - name: oauth2
      - parameter organizationGuid: (path) Identifier for the organization. 
-     - returns: RequestBuilder<Organization> 
+     - returns: RequestBuilder<OrganizationOrganizationModel> 
      */
-    open class func getOrganizationWithRequestBuilder(organizationGuid: String) -> RequestBuilder<Organization> {
+    open class func getOrganizationWithRequestBuilder(organizationGuid: String) -> RequestBuilder<OrganizationOrganizationModel> {
         var localVariablePath = "/api/organizations/{organization_guid}"
         let organizationGuidPreEscape = "\(APIHelper.mapValueToPathItem(organizationGuid))"
         let organizationGuidPostEscape = organizationGuidPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -60,7 +60,7 @@ import AnyCodable
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<Organization>.Type = CybridApiOrganizationSwiftAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<OrganizationOrganizationModel>.Type = CybridApiOrganizationSwiftAPI.requestBuilderFactory.getBuilder()
 
         return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters)
     }
@@ -69,13 +69,13 @@ import AnyCodable
      Patch organization
      
      - parameter organizationGuid: (path) Identifier for the organization. 
-     - parameter patchOrganization: (body)  
+     - parameter patchOrganizationOrganizationModel: (body)  
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the result
      */
     @discardableResult
-    open class func updateOrganization(organizationGuid: String, patchOrganization: PatchOrganization, apiResponseQueue: DispatchQueue = CybridApiOrganizationSwiftAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<Organization, ErrorResponse>) -> Void)) -> RequestTask {
-        return updateOrganizationWithRequestBuilder(organizationGuid: organizationGuid, patchOrganization: patchOrganization).execute(apiResponseQueue) { result in
+    open class func updateOrganization(organizationGuid: String, patchOrganizationOrganizationModel: PatchOrganizationOrganizationModel, apiResponseQueue: DispatchQueue = CybridApiOrganizationSwiftAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<OrganizationOrganizationModel, ErrorResponse>) -> Void)) -> RequestTask {
+        return updateOrganizationWithRequestBuilder(organizationGuid: organizationGuid, patchOrganizationOrganizationModel: patchOrganizationOrganizationModel).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
                 completion(.success(response.body))
@@ -96,16 +96,16 @@ import AnyCodable
        - type: oauth2
        - name: oauth2
      - parameter organizationGuid: (path) Identifier for the organization. 
-     - parameter patchOrganization: (body)  
-     - returns: RequestBuilder<Organization> 
+     - parameter patchOrganizationOrganizationModel: (body)  
+     - returns: RequestBuilder<OrganizationOrganizationModel> 
      */
-    open class func updateOrganizationWithRequestBuilder(organizationGuid: String, patchOrganization: PatchOrganization) -> RequestBuilder<Organization> {
+    open class func updateOrganizationWithRequestBuilder(organizationGuid: String, patchOrganizationOrganizationModel: PatchOrganizationOrganizationModel) -> RequestBuilder<OrganizationOrganizationModel> {
         var localVariablePath = "/api/organizations/{organization_guid}"
         let organizationGuidPreEscape = "\(APIHelper.mapValueToPathItem(organizationGuid))"
         let organizationGuidPostEscape = organizationGuidPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{organization_guid}", with: organizationGuidPostEscape, options: .literal, range: nil)
         let localVariableURLString = CybridApiOrganizationSwiftAPI.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: patchOrganization)
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: patchOrganizationOrganizationModel)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
@@ -115,7 +115,7 @@ import AnyCodable
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<Organization>.Type = CybridApiOrganizationSwiftAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<OrganizationOrganizationModel>.Type = CybridApiOrganizationSwiftAPI.requestBuilderFactory.getBuilder()
 
         return localVariableRequestBuilder.init(method: "PATCH", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters)
     }

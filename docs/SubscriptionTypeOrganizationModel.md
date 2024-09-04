@@ -1,4 +1,4 @@
-# SubscriptionEnvironment
+# SubscriptionTypeOrganizationModel
 
 ## Properties
 Name | Type | Description | Notes

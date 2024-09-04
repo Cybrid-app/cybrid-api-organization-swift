@@ -1,4 +1,4 @@
-# SubscriptionEvent
+# SubscriptionEventOrganizationModel
 
 ## Properties
 Name | Type | Description | Notes

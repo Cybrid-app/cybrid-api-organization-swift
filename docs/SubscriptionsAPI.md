@@ -12,7 +12,7 @@ Method | HTTP request | Description
 
 # **createSubscription**
 ```swift
-    open class func createSubscription(postSubscription: PostSubscription, completion: @escaping (_ data: Subscription?, _ error: Error?) -> Void)
+    open class func createSubscription(postSubscriptionOrganizationModel: PostSubscriptionOrganizationModel, completion: @escaping (_ data: SubscriptionOrganizationModel?, _ error: Error?) -> Void)
 ```
 
 Create Subscription
@@ -24,10 +24,10 @@ Creates a Subscription.  ## Subscription creation  Subscriptions can be created 
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import CybridApiOrganizationSwift
 
-let postSubscription = PostSubscription(name: "name_example", type: "type_example", url: "url_example", environment: "environment_example") // PostSubscription | 
+let postSubscriptionOrganizationModel = PostSubscription(name: "name_example", type: "type_example", url: "url_example", environment: "environment_example") // PostSubscriptionOrganizationModel | 
 
 // Create Subscription
-SubscriptionsAPI.createSubscription(postSubscription: postSubscription) { (response, error) in
+SubscriptionsAPI.createSubscription(postSubscriptionOrganizationModel: postSubscriptionOrganizationModel) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -43,11 +43,11 @@ SubscriptionsAPI.createSubscription(postSubscription: postSubscription) { (respo
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **postSubscription** | [**PostSubscription**](PostSubscription.md) |  | 
+ **postSubscriptionOrganizationModel** | [**PostSubscriptionOrganizationModel**](PostSubscriptionOrganizationModel.md) |  | 
 
 ### Return type
 
-[**Subscription**](Subscription.md)
+[**SubscriptionOrganizationModel**](SubscriptionOrganizationModel.md)
 
 ### Authorization
 
@@ -112,7 +112,7 @@ Void (empty response body)
 
 # **getSubscription**
 ```swift
-    open class func getSubscription(subscriptionGuid: String, includeSigningKey: Bool? = nil, completion: @escaping (_ data: Subscription?, _ error: Error?) -> Void)
+    open class func getSubscription(subscriptionGuid: String, includeSigningKey: Bool? = nil, completion: @escaping (_ data: SubscriptionOrganizationModel?, _ error: Error?) -> Void)
 ```
 
 Get Subscription 
@@ -149,7 +149,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Subscription**](Subscription.md)
+[**SubscriptionOrganizationModel**](SubscriptionOrganizationModel.md)
 
 ### Authorization
 
@@ -164,7 +164,7 @@ Name | Type | Description  | Notes
 
 # **listSubscriptions**
 ```swift
-    open class func listSubscriptions(page: Int? = nil, perPage: Int? = nil, guid: String? = nil, includeSigningKey: Bool? = nil, completion: @escaping (_ data: SubscriptionList?, _ error: Error?) -> Void)
+    open class func listSubscriptions(page: Int? = nil, perPage: Int? = nil, guid: String? = nil, includeSigningKey: Bool? = nil, completion: @escaping (_ data: SubscriptionListOrganizationModel?, _ error: Error?) -> Void)
 ```
 
 Get subscriptions list
@@ -205,7 +205,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**SubscriptionList**](SubscriptionList.md)
+[**SubscriptionListOrganizationModel**](SubscriptionListOrganizationModel.md)
 
 ### Authorization
 

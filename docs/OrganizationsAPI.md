@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 # **getOrganization**
 ```swift
-    open class func getOrganization(organizationGuid: String, completion: @escaping (_ data: Organization?, _ error: Error?) -> Void)
+    open class func getOrganization(organizationGuid: String, completion: @escaping (_ data: OrganizationOrganizationModel?, _ error: Error?) -> Void)
 ```
 
 Get organization
@@ -45,7 +45,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Organization**](Organization.md)
+[**OrganizationOrganizationModel**](OrganizationOrganizationModel.md)
 
 ### Authorization
 
@@ -60,7 +60,7 @@ Name | Type | Description  | Notes
 
 # **updateOrganization**
 ```swift
-    open class func updateOrganization(organizationGuid: String, patchOrganization: PatchOrganization, completion: @escaping (_ data: Organization?, _ error: Error?) -> Void)
+    open class func updateOrganization(organizationGuid: String, patchOrganizationOrganizationModel: PatchOrganizationOrganizationModel, completion: @escaping (_ data: OrganizationOrganizationModel?, _ error: Error?) -> Void)
 ```
 
 Patch organization
@@ -73,10 +73,10 @@ Update an organization.  Required scope: **organizations:write**
 import CybridApiOrganizationSwift
 
 let organizationGuid = "organizationGuid_example" // String | Identifier for the organization.
-let patchOrganization = PatchOrganization(name: "name_example") // PatchOrganization | 
+let patchOrganizationOrganizationModel = PatchOrganization(name: "name_example") // PatchOrganizationOrganizationModel | 
 
 // Patch organization
-OrganizationsAPI.updateOrganization(organizationGuid: organizationGuid, patchOrganization: patchOrganization) { (response, error) in
+OrganizationsAPI.updateOrganization(organizationGuid: organizationGuid, patchOrganizationOrganizationModel: patchOrganizationOrganizationModel) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -93,11 +93,11 @@ OrganizationsAPI.updateOrganization(organizationGuid: organizationGuid, patchOrg
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **organizationGuid** | **String** | Identifier for the organization. | 
- **patchOrganization** | [**PatchOrganization**](PatchOrganization.md) |  | 
+ **patchOrganizationOrganizationModel** | [**PatchOrganizationOrganizationModel**](PatchOrganizationOrganizationModel.md) |  | 
 
 ### Return type
 
-[**Organization**](Organization.md)
+[**OrganizationOrganizationModel**](OrganizationOrganizationModel.md)
 
 ### Authorization
 
