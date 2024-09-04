@@ -15,13 +15,13 @@ import AnyCodable
     /**
      Create Subscription
      
-     - parameter postSubscription: (body)  
+     - parameter postSubscriptionOrganizationModel: (body)  
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the result
      */
     @discardableResult
-    open class func createSubscription(postSubscription: PostSubscription, apiResponseQueue: DispatchQueue = CybridApiOrganizationSwiftAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<Subscription, ErrorResponse>) -> Void)) -> RequestTask {
-        return createSubscriptionWithRequestBuilder(postSubscription: postSubscription).execute(apiResponseQueue) { result in
+    open class func createSubscription(postSubscriptionOrganizationModel: PostSubscriptionOrganizationModel, apiResponseQueue: DispatchQueue = CybridApiOrganizationSwiftAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<SubscriptionOrganizationModel, ErrorResponse>) -> Void)) -> RequestTask {
+        return createSubscriptionWithRequestBuilder(postSubscriptionOrganizationModel: postSubscriptionOrganizationModel).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
                 completion(.success(response.body))
@@ -41,13 +41,13 @@ import AnyCodable
      - OAuth:
        - type: oauth2
        - name: oauth2
-     - parameter postSubscription: (body)  
-     - returns: RequestBuilder<Subscription> 
+     - parameter postSubscriptionOrganizationModel: (body)  
+     - returns: RequestBuilder<SubscriptionOrganizationModel> 
      */
-    open class func createSubscriptionWithRequestBuilder(postSubscription: PostSubscription) -> RequestBuilder<Subscription> {
+    open class func createSubscriptionWithRequestBuilder(postSubscriptionOrganizationModel: PostSubscriptionOrganizationModel) -> RequestBuilder<SubscriptionOrganizationModel> {
         let localVariablePath = "/api/subscriptions/"
         let localVariableURLString = CybridApiOrganizationSwiftAPI.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: postSubscription)
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: postSubscriptionOrganizationModel)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
@@ -57,7 +57,7 @@ import AnyCodable
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<Subscription>.Type = CybridApiOrganizationSwiftAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<SubscriptionOrganizationModel>.Type = CybridApiOrganizationSwiftAPI.requestBuilderFactory.getBuilder()
 
         return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters)
     }
@@ -124,7 +124,7 @@ import AnyCodable
      - parameter completion: completion handler to receive the result
      */
     @discardableResult
-    open class func getSubscription(subscriptionGuid: String, includeSigningKey: Bool? = nil, apiResponseQueue: DispatchQueue = CybridApiOrganizationSwiftAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<Subscription, ErrorResponse>) -> Void)) -> RequestTask {
+    open class func getSubscription(subscriptionGuid: String, includeSigningKey: Bool? = nil, apiResponseQueue: DispatchQueue = CybridApiOrganizationSwiftAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<SubscriptionOrganizationModel, ErrorResponse>) -> Void)) -> RequestTask {
         return getSubscriptionWithRequestBuilder(subscriptionGuid: subscriptionGuid, includeSigningKey: includeSigningKey).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
@@ -147,9 +147,9 @@ import AnyCodable
        - name: oauth2
      - parameter subscriptionGuid: (path) Identifier for the subscription. 
      - parameter includeSigningKey: (query) Flag to include signing key in the response. (optional)
-     - returns: RequestBuilder<Subscription> 
+     - returns: RequestBuilder<SubscriptionOrganizationModel> 
      */
-    open class func getSubscriptionWithRequestBuilder(subscriptionGuid: String, includeSigningKey: Bool? = nil) -> RequestBuilder<Subscription> {
+    open class func getSubscriptionWithRequestBuilder(subscriptionGuid: String, includeSigningKey: Bool? = nil) -> RequestBuilder<SubscriptionOrganizationModel> {
         var localVariablePath = "/api/subscriptions/{subscription_guid}"
         let subscriptionGuidPreEscape = "\(APIHelper.mapValueToPathItem(subscriptionGuid))"
         let subscriptionGuidPostEscape = subscriptionGuidPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -168,7 +168,7 @@ import AnyCodable
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<Subscription>.Type = CybridApiOrganizationSwiftAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<SubscriptionOrganizationModel>.Type = CybridApiOrganizationSwiftAPI.requestBuilderFactory.getBuilder()
 
         return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters)
     }
@@ -184,7 +184,7 @@ import AnyCodable
      - parameter completion: completion handler to receive the result
      */
     @discardableResult
-    open class func listSubscriptions(page: Int? = nil, perPage: Int? = nil, guid: String? = nil, includeSigningKey: Bool? = nil, apiResponseQueue: DispatchQueue = CybridApiOrganizationSwiftAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<SubscriptionList, ErrorResponse>) -> Void)) -> RequestTask {
+    open class func listSubscriptions(page: Int? = nil, perPage: Int? = nil, guid: String? = nil, includeSigningKey: Bool? = nil, apiResponseQueue: DispatchQueue = CybridApiOrganizationSwiftAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<SubscriptionListOrganizationModel, ErrorResponse>) -> Void)) -> RequestTask {
         return listSubscriptionsWithRequestBuilder(page: page, perPage: perPage, guid: guid, includeSigningKey: includeSigningKey).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
@@ -209,9 +209,9 @@ import AnyCodable
      - parameter perPage: (query) The number of entities per page to return. (optional)
      - parameter guid: (query) Comma separated subscription_guids to list subscriptions for. (optional)
      - parameter includeSigningKey: (query) Flag to include signing key in the response. (optional)
-     - returns: RequestBuilder<SubscriptionList> 
+     - returns: RequestBuilder<SubscriptionListOrganizationModel> 
      */
-    open class func listSubscriptionsWithRequestBuilder(page: Int? = nil, perPage: Int? = nil, guid: String? = nil, includeSigningKey: Bool? = nil) -> RequestBuilder<SubscriptionList> {
+    open class func listSubscriptionsWithRequestBuilder(page: Int? = nil, perPage: Int? = nil, guid: String? = nil, includeSigningKey: Bool? = nil) -> RequestBuilder<SubscriptionListOrganizationModel> {
         let localVariablePath = "/api/subscriptions"
         let localVariableURLString = CybridApiOrganizationSwiftAPI.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
@@ -230,7 +230,7 @@ import AnyCodable
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<SubscriptionList>.Type = CybridApiOrganizationSwiftAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<SubscriptionListOrganizationModel>.Type = CybridApiOrganizationSwiftAPI.requestBuilderFactory.getBuilder()
 
         return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters)
     }

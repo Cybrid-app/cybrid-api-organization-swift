@@ -1,4 +1,4 @@
-# SubscriptionDelivery
+# SubscriptionDeliveryOrganizationModel
 
 ## Properties
 Name | Type | Description | Notes

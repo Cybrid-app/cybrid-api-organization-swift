@@ -20,7 +20,7 @@ import AnyCodable
      - parameter completion: completion handler to receive the result
      */
     @discardableResult
-    open class func getSubscriptionEvent(subscriptionEventGuid: String, apiResponseQueue: DispatchQueue = CybridApiOrganizationSwiftAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<SubscriptionEvent, ErrorResponse>) -> Void)) -> RequestTask {
+    open class func getSubscriptionEvent(subscriptionEventGuid: String, apiResponseQueue: DispatchQueue = CybridApiOrganizationSwiftAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<SubscriptionEventOrganizationModel, ErrorResponse>) -> Void)) -> RequestTask {
         return getSubscriptionEventWithRequestBuilder(subscriptionEventGuid: subscriptionEventGuid).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
@@ -42,9 +42,9 @@ import AnyCodable
        - type: oauth2
        - name: oauth2
      - parameter subscriptionEventGuid: (path) Identifier for the Subscription Event. 
-     - returns: RequestBuilder<SubscriptionEvent> 
+     - returns: RequestBuilder<SubscriptionEventOrganizationModel> 
      */
-    open class func getSubscriptionEventWithRequestBuilder(subscriptionEventGuid: String) -> RequestBuilder<SubscriptionEvent> {
+    open class func getSubscriptionEventWithRequestBuilder(subscriptionEventGuid: String) -> RequestBuilder<SubscriptionEventOrganizationModel> {
         var localVariablePath = "/api/subscription_events/{subscription_event_guid}"
         let subscriptionEventGuidPreEscape = "\(APIHelper.mapValueToPathItem(subscriptionEventGuid))"
         let subscriptionEventGuidPostEscape = subscriptionEventGuidPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -60,7 +60,7 @@ import AnyCodable
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<SubscriptionEvent>.Type = CybridApiOrganizationSwiftAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<SubscriptionEventOrganizationModel>.Type = CybridApiOrganizationSwiftAPI.requestBuilderFactory.getBuilder()
 
         return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters)
     }
@@ -75,7 +75,7 @@ import AnyCodable
      - parameter completion: completion handler to receive the result
      */
     @discardableResult
-    open class func listSubscriptionEvents(page: Int? = nil, perPage: Int? = nil, guid: String? = nil, apiResponseQueue: DispatchQueue = CybridApiOrganizationSwiftAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<SubscriptionEventList, ErrorResponse>) -> Void)) -> RequestTask {
+    open class func listSubscriptionEvents(page: Int? = nil, perPage: Int? = nil, guid: String? = nil, apiResponseQueue: DispatchQueue = CybridApiOrganizationSwiftAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<SubscriptionEventListOrganizationModel, ErrorResponse>) -> Void)) -> RequestTask {
         return listSubscriptionEventsWithRequestBuilder(page: page, perPage: perPage, guid: guid).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
@@ -99,9 +99,9 @@ import AnyCodable
      - parameter page: (query) The page index to retrieve. (optional)
      - parameter perPage: (query) The number of entities per page to return. (optional)
      - parameter guid: (query) Comma separated subscription_event_guids to list subscription events for. (optional)
-     - returns: RequestBuilder<SubscriptionEventList> 
+     - returns: RequestBuilder<SubscriptionEventListOrganizationModel> 
      */
-    open class func listSubscriptionEventsWithRequestBuilder(page: Int? = nil, perPage: Int? = nil, guid: String? = nil) -> RequestBuilder<SubscriptionEventList> {
+    open class func listSubscriptionEventsWithRequestBuilder(page: Int? = nil, perPage: Int? = nil, guid: String? = nil) -> RequestBuilder<SubscriptionEventListOrganizationModel> {
         let localVariablePath = "/api/subscription_events"
         let localVariableURLString = CybridApiOrganizationSwiftAPI.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
@@ -119,7 +119,7 @@ import AnyCodable
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<SubscriptionEventList>.Type = CybridApiOrganizationSwiftAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<SubscriptionEventListOrganizationModel>.Type = CybridApiOrganizationSwiftAPI.requestBuilderFactory.getBuilder()
 
         return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters)
     }
