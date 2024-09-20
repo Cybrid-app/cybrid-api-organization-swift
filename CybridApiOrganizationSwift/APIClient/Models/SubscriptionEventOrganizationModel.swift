@@ -19,7 +19,7 @@ import AnyCodable
     /** The object guid for which the event is received. */
     public var objectGuid: String
     /** The environment that the subscription event is configured for; one of sandbox or production. */
-    public var environment: String?
+    public var environment: String
     /** The organization guid of the subscription event. */
     public var organizationGuid: String
     /** ISO8601 datetime the record was created at. */
@@ -27,7 +27,7 @@ import AnyCodable
     /** ISO8601 datetime the record was last updated at. */
     public var updatedAt: Date?
 
-    public init(guid: String, eventType: String, objectGuid: String, environment: String? = nil, organizationGuid: String, createdAt: Date, updatedAt: Date? = nil) {
+    public init(guid: String, eventType: String, objectGuid: String, environment: String, organizationGuid: String, createdAt: Date, updatedAt: Date? = nil) {
         self.guid = guid
         self.eventType = eventType
         self.objectGuid = objectGuid
@@ -54,7 +54,7 @@ import AnyCodable
         try container.encode(guid, forKey: .guid)
         try container.encode(eventType, forKey: .eventType)
         try container.encode(objectGuid, forKey: .objectGuid)
-        try container.encodeIfPresent(environment, forKey: .environment)
+        try container.encode(environment, forKey: .environment)
         try container.encode(organizationGuid, forKey: .organizationGuid)
         try container.encode(createdAt, forKey: .createdAt)
         try container.encodeIfPresent(updatedAt, forKey: .updatedAt)
