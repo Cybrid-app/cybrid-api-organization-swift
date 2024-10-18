@@ -24,7 +24,7 @@ Creates a Subscription.  ## Subscription creation  Subscriptions can be created 
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import CybridApiOrganizationSwift
 
-let postSubscriptionOrganizationModel = PostSubscription(name: "name_example", type: "type_example", url: "url_example", environment: "environment_example") // PostSubscriptionOrganizationModel | 
+let postSubscriptionOrganizationModel = PostSubscription(environment: "environment_example", type: "type_example", name: "name_example", url: "url_example") // PostSubscriptionOrganizationModel | 
 
 // Create Subscription
 SubscriptionsAPI.createSubscription(postSubscriptionOrganizationModel: postSubscriptionOrganizationModel) { (response, error) in

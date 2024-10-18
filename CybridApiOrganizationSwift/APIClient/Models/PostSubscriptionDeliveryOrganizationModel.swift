@@ -10,6 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
+/** Request body for subscription delivery creation. */
 @objc public class PostSubscriptionDeliveryOrganizationModel: NSObject, Codable, JSONEncodable {
 
     /** The event guid . */
