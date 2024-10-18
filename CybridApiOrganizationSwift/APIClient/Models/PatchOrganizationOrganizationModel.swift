@@ -10,12 +10,13 @@ import Foundation
 import AnyCodable
 #endif
 
+/** Request body for organization modification. */
 @objc public class PatchOrganizationOrganizationModel: NSObject, Codable, JSONEncodable {
 
     /** Name for the organization. */
-    public var name: String
+    public var name: String?
 
-    public init(name: String) {
+    public init(name: String? = nil) {
         self.name = name
     }
 
@@ -27,7 +28,7 @@ import AnyCodable
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(name, forKey: .name)
+        try container.encodeIfPresent(name, forKey: .name)
     }
 }
 
