@@ -112,7 +112,7 @@ Void (empty response body)
 
 # **getSubscription**
 ```swift
-    open class func getSubscription(subscriptionGuid: String, includeSigningKey: Bool? = nil, completion: @escaping (_ data: SubscriptionOrganizationModel?, _ error: Error?) -> Void)
+    open class func getSubscription(subscriptionGuid: String, completion: @escaping (_ data: SubscriptionOrganizationModel?, _ error: Error?) -> Void)
 ```
 
 Get Subscription 
@@ -125,10 +125,9 @@ Retrieves a subscription.  Required scope: **subscriptions:read**
 import CybridApiOrganizationSwift
 
 let subscriptionGuid = "subscriptionGuid_example" // String | Identifier for the subscription.
-let includeSigningKey = true // Bool | Flag to include signing key in the response. (optional)
 
 // Get Subscription 
-SubscriptionsAPI.getSubscription(subscriptionGuid: subscriptionGuid, includeSigningKey: includeSigningKey) { (response, error) in
+SubscriptionsAPI.getSubscription(subscriptionGuid: subscriptionGuid) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -145,7 +144,6 @@ SubscriptionsAPI.getSubscription(subscriptionGuid: subscriptionGuid, includeSign
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **subscriptionGuid** | **String** | Identifier for the subscription. | 
- **includeSigningKey** | **Bool** | Flag to include signing key in the response. | [optional] 
 
 ### Return type
 
@@ -164,7 +162,7 @@ Name | Type | Description  | Notes
 
 # **listSubscriptions**
 ```swift
-    open class func listSubscriptions(page: Int? = nil, perPage: Int? = nil, guid: String? = nil, includeSigningKey: Bool? = nil, completion: @escaping (_ data: SubscriptionListOrganizationModel?, _ error: Error?) -> Void)
+    open class func listSubscriptions(page: Int? = nil, perPage: Int? = nil, guid: String? = nil, environment: String? = nil, state: String? = nil, completion: @escaping (_ data: SubscriptionListOrganizationModel?, _ error: Error?) -> Void)
 ```
 
 Get subscriptions list
@@ -179,10 +177,11 @@ import CybridApiOrganizationSwift
 let page = 987 // Int | The page index to retrieve. (optional)
 let perPage = 987 // Int | The number of entities per page to return. (optional)
 let guid = "guid_example" // String | Comma separated subscription_guids to list subscriptions for. (optional)
-let includeSigningKey = true // Bool | Flag to include signing key in the response. (optional)
+let environment = "environment_example" // String | Environment to list subscriptions for. (optional)
+let state = "state_example" // String | State to list subscriptions for. (optional)
 
 // Get subscriptions list
-SubscriptionsAPI.listSubscriptions(page: page, perPage: perPage, guid: guid, includeSigningKey: includeSigningKey) { (response, error) in
+SubscriptionsAPI.listSubscriptions(page: page, perPage: perPage, guid: guid, environment: environment, state: state) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -201,7 +200,8 @@ Name | Type | Description  | Notes
  **page** | **Int** | The page index to retrieve. | [optional] 
  **perPage** | **Int** | The number of entities per page to return. | [optional] 
  **guid** | **String** | Comma separated subscription_guids to list subscriptions for. | [optional] 
- **includeSigningKey** | **Bool** | Flag to include signing key in the response. | [optional] 
+ **environment** | **String** | Environment to list subscriptions for. | [optional] 
+ **state** | **String** | State to list subscriptions for. | [optional] 
 
 ### Return type
 

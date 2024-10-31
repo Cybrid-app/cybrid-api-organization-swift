@@ -119,13 +119,12 @@ import AnyCodable
      Get Subscription 
      
      - parameter subscriptionGuid: (path) Identifier for the subscription. 
-     - parameter includeSigningKey: (query) Flag to include signing key in the response. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the result
      */
     @discardableResult
-    open class func getSubscription(subscriptionGuid: String, includeSigningKey: Bool? = nil, apiResponseQueue: DispatchQueue = CybridApiOrganizationSwiftAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<SubscriptionOrganizationModel, ErrorResponse>) -> Void)) -> RequestTask {
-        return getSubscriptionWithRequestBuilder(subscriptionGuid: subscriptionGuid, includeSigningKey: includeSigningKey).execute(apiResponseQueue) { result in
+    open class func getSubscription(subscriptionGuid: String, apiResponseQueue: DispatchQueue = CybridApiOrganizationSwiftAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<SubscriptionOrganizationModel, ErrorResponse>) -> Void)) -> RequestTask {
+        return getSubscriptionWithRequestBuilder(subscriptionGuid: subscriptionGuid).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
                 completion(.success(response.body))
@@ -146,10 +145,9 @@ import AnyCodable
        - type: oauth2
        - name: oauth2
      - parameter subscriptionGuid: (path) Identifier for the subscription. 
-     - parameter includeSigningKey: (query) Flag to include signing key in the response. (optional)
      - returns: RequestBuilder<SubscriptionOrganizationModel> 
      */
-    open class func getSubscriptionWithRequestBuilder(subscriptionGuid: String, includeSigningKey: Bool? = nil) -> RequestBuilder<SubscriptionOrganizationModel> {
+    open class func getSubscriptionWithRequestBuilder(subscriptionGuid: String) -> RequestBuilder<SubscriptionOrganizationModel> {
         var localVariablePath = "/api/subscriptions/{subscription_guid}"
         let subscriptionGuidPreEscape = "\(APIHelper.mapValueToPathItem(subscriptionGuid))"
         let subscriptionGuidPostEscape = subscriptionGuidPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -157,10 +155,7 @@ import AnyCodable
         let localVariableURLString = CybridApiOrganizationSwiftAPI.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
-        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
-        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "include_signing_key": includeSigningKey?.encodeToJSON(),
-        ])
+        let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
         let localVariableNillableHeaders: [String: Any?] = [
             :
@@ -179,13 +174,14 @@ import AnyCodable
      - parameter page: (query) The page index to retrieve. (optional)
      - parameter perPage: (query) The number of entities per page to return. (optional)
      - parameter guid: (query) Comma separated subscription_guids to list subscriptions for. (optional)
-     - parameter includeSigningKey: (query) Flag to include signing key in the response. (optional)
+     - parameter environment: (query) Environment to list subscriptions for. (optional)
+     - parameter state: (query) State to list subscriptions for. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the result
      */
     @discardableResult
-    open class func listSubscriptions(page: Int? = nil, perPage: Int? = nil, guid: String? = nil, includeSigningKey: Bool? = nil, apiResponseQueue: DispatchQueue = CybridApiOrganizationSwiftAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<SubscriptionListOrganizationModel, ErrorResponse>) -> Void)) -> RequestTask {
-        return listSubscriptionsWithRequestBuilder(page: page, perPage: perPage, guid: guid, includeSigningKey: includeSigningKey).execute(apiResponseQueue) { result in
+    open class func listSubscriptions(page: Int? = nil, perPage: Int? = nil, guid: String? = nil, environment: String? = nil, state: String? = nil, apiResponseQueue: DispatchQueue = CybridApiOrganizationSwiftAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<SubscriptionListOrganizationModel, ErrorResponse>) -> Void)) -> RequestTask {
+        return listSubscriptionsWithRequestBuilder(page: page, perPage: perPage, guid: guid, environment: environment, state: state).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
                 completion(.success(response.body))
@@ -208,10 +204,11 @@ import AnyCodable
      - parameter page: (query) The page index to retrieve. (optional)
      - parameter perPage: (query) The number of entities per page to return. (optional)
      - parameter guid: (query) Comma separated subscription_guids to list subscriptions for. (optional)
-     - parameter includeSigningKey: (query) Flag to include signing key in the response. (optional)
+     - parameter environment: (query) Environment to list subscriptions for. (optional)
+     - parameter state: (query) State to list subscriptions for. (optional)
      - returns: RequestBuilder<SubscriptionListOrganizationModel> 
      */
-    open class func listSubscriptionsWithRequestBuilder(page: Int? = nil, perPage: Int? = nil, guid: String? = nil, includeSigningKey: Bool? = nil) -> RequestBuilder<SubscriptionListOrganizationModel> {
+    open class func listSubscriptionsWithRequestBuilder(page: Int? = nil, perPage: Int? = nil, guid: String? = nil, environment: String? = nil, state: String? = nil) -> RequestBuilder<SubscriptionListOrganizationModel> {
         let localVariablePath = "/api/subscriptions"
         let localVariableURLString = CybridApiOrganizationSwiftAPI.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
@@ -221,7 +218,8 @@ import AnyCodable
             "page": page?.encodeToJSON(),
             "per_page": perPage?.encodeToJSON(),
             "guid": guid?.encodeToJSON(),
-            "include_signing_key": includeSigningKey?.encodeToJSON(),
+            "environment": environment?.encodeToJSON(),
+            "state": state?.encodeToJSON(),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
