@@ -14,6 +14,8 @@ import AnyCodable
 
     /** Auto-generated unique identifier for the subscription event. */
     public var guid: String
+    /** The bank guid for which the event is received. */
+    public var bankGuid: String?
     /** The type of the subscription event. One of trade.storing, trade.pending, trade.cancelled, trade.completed, trade.settling, trade.failed, transfer.storing, transfer.pending, transfer.holding, transfer.reviewing, transfer.completed, transfer.failed, identity_verification.storing, identity_verification.pending, identity_verification.reviewing, identity_verification.waiting, identity_verification.expired, or identity_verification.completed. */
     public var eventType: String
     /** The object guid for which the event is received. */
@@ -27,8 +29,9 @@ import AnyCodable
     /** ISO8601 datetime the record was last updated at. */
     public var updatedAt: Date?
 
-    public init(guid: String, eventType: String, objectGuid: String, environment: String, organizationGuid: String, createdAt: Date, updatedAt: Date? = nil) {
+    public init(guid: String, bankGuid: String? = nil, eventType: String, objectGuid: String, environment: String, organizationGuid: String, createdAt: Date, updatedAt: Date? = nil) {
         self.guid = guid
+        self.bankGuid = bankGuid
         self.eventType = eventType
         self.objectGuid = objectGuid
         self.environment = environment
@@ -39,6 +42,7 @@ import AnyCodable
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
         case guid
+        case bankGuid = "bank_guid"
         case eventType = "event_type"
         case objectGuid = "object_guid"
         case environment
@@ -52,6 +56,7 @@ import AnyCodable
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(guid, forKey: .guid)
+        try container.encodeIfPresent(bankGuid, forKey: .bankGuid)
         try container.encode(eventType, forKey: .eventType)
         try container.encode(objectGuid, forKey: .objectGuid)
         try container.encode(environment, forKey: .environment)
