@@ -11,7 +11,7 @@ import AnyCodable
 #endif
 
 /** Request body for subscription delivery creation. */
-@objc public class PostSubscriptionDeliveryOrganizationModel: NSObject, Codable, JSONEncodable {
+public struct PostSubscriptionDeliveryOrganizationModel: Codable, JSONEncodable, Hashable {
 
     /** The event guid . */
     public var subscriptionEventGuid: String

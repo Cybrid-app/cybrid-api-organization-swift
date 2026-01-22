@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-@objc open class SubscriptionDeliveriesAPI : NSObject {
+open class SubscriptionDeliveriesAPI {
 
     /**
      Create SubscriptionDelivery

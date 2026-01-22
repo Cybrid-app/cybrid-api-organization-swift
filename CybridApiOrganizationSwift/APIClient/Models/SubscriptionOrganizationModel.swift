@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-@objc public class SubscriptionOrganizationModel: NSObject, Codable, JSONEncodable {
+public struct SubscriptionOrganizationModel: Codable, JSONEncodable, Hashable {
 
     public enum TypeOrganizationModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
         case webhook = "webhook"

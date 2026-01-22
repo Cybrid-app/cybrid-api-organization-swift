@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-@objc open class SubscriptionEventsAPI : NSObject {
+open class SubscriptionEventsAPI {
 
     /**
      Get Subscription Event 

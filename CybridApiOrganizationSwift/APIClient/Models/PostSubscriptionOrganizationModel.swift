@@ -11,7 +11,7 @@ import AnyCodable
 #endif
 
 /** Request body for subscription creation. */
-@objc public class PostSubscriptionOrganizationModel: NSObject, Codable, JSONEncodable {
+public struct PostSubscriptionOrganizationModel: Codable, JSONEncodable, Hashable {
 
     public enum EnvironmentOrganizationModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
         case sandbox = "sandbox"

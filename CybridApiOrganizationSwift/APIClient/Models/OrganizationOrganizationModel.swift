@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-@objc public class OrganizationOrganizationModel: NSObject, Codable, JSONEncodable {
+public struct OrganizationOrganizationModel: Codable, JSONEncodable, Hashable {
 
     /** Auto-generated unique identifier for the organization. */
     public var guid: String
