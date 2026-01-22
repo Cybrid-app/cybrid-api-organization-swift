@@ -11,7 +11,7 @@ import AnyCodable
 #endif
 
 /** Request body for organization modification. */
-@objc public class PatchOrganizationOrganizationModel: NSObject, Codable, JSONEncodable {
+public struct PatchOrganizationOrganizationModel: Codable, JSONEncodable, Hashable {
 
     /** Name for the organization. */
     public var name: String?

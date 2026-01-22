@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-@objc public class ErrorResponseOrganizationModel: NSObject, Codable, JSONEncodable {
+public struct ErrorResponseOrganizationModel: Codable, JSONEncodable, Hashable {
 
     /** Status code for Http Request */
     public var status: Int

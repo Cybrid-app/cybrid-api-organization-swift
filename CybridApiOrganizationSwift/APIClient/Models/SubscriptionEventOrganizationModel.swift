@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-@objc public class SubscriptionEventOrganizationModel: NSObject, Codable, JSONEncodable {
+public struct SubscriptionEventOrganizationModel: Codable, JSONEncodable, Hashable {
 
     /** Auto-generated unique identifier for the subscription event. */
     public var guid: String

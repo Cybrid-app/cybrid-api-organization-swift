@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-@objc public class SubscriptionEventListOrganizationModel: NSObject, Codable, JSONEncodable {
+public struct SubscriptionEventListOrganizationModel: Codable, JSONEncodable, Hashable {
 
     /** The total number of records available. */
     public var total: Int
