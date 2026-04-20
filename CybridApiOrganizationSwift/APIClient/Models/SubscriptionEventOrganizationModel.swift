@@ -16,7 +16,7 @@ public struct SubscriptionEventOrganizationModel: Codable, JSONEncodable, Hashab
     public var guid: String
     /** The bank guid for which the event is received. */
     public var bankGuid: String?
-    /** The type of the subscription event. One of trade.storing, trade.pending, trade.executed, trade.cancelled, trade.completed, trade.settling, trade.failed, transfer.storing, transfer.pending, transfer.holding, transfer.reviewing, transfer.completed, transfer.failed, identity_verification.storing, identity_verification.pending, identity_verification.reviewing, identity_verification.waiting, identity_verification.expired, or identity_verification.completed. */
+    /** The type of the subscription event. One of trade.storing, trade.pending, trade.executed, trade.cancelled, trade.completed, trade.settling, trade.failed, transfer.storing, transfer.pending, transfer.holding, transfer.reviewing, transfer.completed, transfer.failed, identity_verification.storing, identity_verification.pending, identity_verification.reviewing, identity_verification.waiting, identity_verification.expired, identity_verification.completed, plan.storing, plan.planning, plan.completed, plan.failed, execution.storing, execution.executing, execution.completed, or execution.failed. */
     public var eventType: String
     /** The object guid for which the event is received. */
     public var objectGuid: String
