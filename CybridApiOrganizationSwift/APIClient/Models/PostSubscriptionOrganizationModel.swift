@@ -20,6 +20,7 @@ public struct PostSubscriptionOrganizationModel: Codable, JSONEncodable, Hashabl
     }
     public enum TypeOrganizationModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
         case webhook = "webhook"
+        case email = "email"
         case unknownDefaultOpenApi = "unknown_default_open_api"
     }
     /** The environment that the subscription is configured for. */
@@ -28,14 +29,17 @@ public struct PostSubscriptionOrganizationModel: Codable, JSONEncodable, Hashabl
     public var type: TypeOrganizationModel
     /** Name provided for the subscription. */
     public var name: String
-    /** URL provided for the subscription. */
-    public var url: String
+    /** URL provided for the subscription. Required when type is webhook. */
+    public var url: String?
+    /** Recipient email address. Required when type is email. */
+    public var recipient: String?
 
-    public init(environment: EnvironmentOrganizationModel, type: TypeOrganizationModel, name: String, url: String) {
+    public init(environment: EnvironmentOrganizationModel, type: TypeOrganizationModel, name: String, url: String? = nil, recipient: String? = nil) {
         self.environment = environment
         self.type = type
         self.name = name
         self.url = url
+        self.recipient = recipient
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
@@ -43,6 +47,7 @@ public struct PostSubscriptionOrganizationModel: Codable, JSONEncodable, Hashabl
         case type
         case name
         case url
+        case recipient
     }
 
     // Encodable protocol methods
@@ -52,7 +57,8 @@ public struct PostSubscriptionOrganizationModel: Codable, JSONEncodable, Hashabl
         try container.encode(environment, forKey: .environment)
         try container.encode(type, forKey: .type)
         try container.encode(name, forKey: .name)
-        try container.encode(url, forKey: .url)
+        try container.encodeIfPresent(url, forKey: .url)
+        try container.encodeIfPresent(recipient, forKey: .recipient)
     }
 }
 

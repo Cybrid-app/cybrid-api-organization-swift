@@ -12,5 +12,6 @@ import AnyCodable
 
 public enum SubscriptionTypeOrganizationModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
     case webhook = "webhook"
+    case email = "email"
     case unknownDefaultOpenApi = "unknown_default_open_api"
 }

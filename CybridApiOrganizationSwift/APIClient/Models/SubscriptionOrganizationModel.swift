@@ -14,6 +14,7 @@ public struct SubscriptionOrganizationModel: Codable, JSONEncodable, Hashable {
 
     public enum TypeOrganizationModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
         case webhook = "webhook"
+        case email = "email"
         case unknownDefaultOpenApi = "unknown_default_open_api"
     }
     /** Auto-generated unique identifier for the subscription. */
@@ -24,10 +25,12 @@ public struct SubscriptionOrganizationModel: Codable, JSONEncodable, Hashable {
     public var name: String
     /** The type of subscription. */
     public var type: TypeOrganizationModel
-    /** The url for the subscription. */
-    public var url: String
-    /** Subscription private signing key. */
+    /** The url for the subscription. Required when subscription_type is webhook. */
+    public var url: String?
+    /** Subscription private signing key. Optional when subscription_type is webhook. */
     public var signingKey: String?
+    /** Recipient email address. Required when subscription_type is email. */
+    public var recipient: String?
     /** ISO8601 datetime the deliveries started failing. */
     public var deliveriesFailingSince: Date?
     /** The environment that the subscription is configured for; one of sandbox or production. */
@@ -41,13 +44,14 @@ public struct SubscriptionOrganizationModel: Codable, JSONEncodable, Hashable {
     /** ISO8601 datetime the record was last updated at. */
     public var updatedAt: Date?
 
-    public init(guid: String, organizationGuid: String? = nil, name: String, type: TypeOrganizationModel, url: String, signingKey: String? = nil, deliveriesFailingSince: Date? = nil, environment: String, state: String, failureCode: String? = nil, createdAt: Date? = nil, updatedAt: Date? = nil) {
+    public init(guid: String, organizationGuid: String? = nil, name: String, type: TypeOrganizationModel, url: String? = nil, signingKey: String? = nil, recipient: String? = nil, deliveriesFailingSince: Date? = nil, environment: String, state: String, failureCode: String? = nil, createdAt: Date? = nil, updatedAt: Date? = nil) {
         self.guid = guid
         self.organizationGuid = organizationGuid
         self.name = name
         self.type = type
         self.url = url
         self.signingKey = signingKey
+        self.recipient = recipient
         self.deliveriesFailingSince = deliveriesFailingSince
         self.environment = environment
         self.state = state
@@ -63,6 +67,7 @@ public struct SubscriptionOrganizationModel: Codable, JSONEncodable, Hashable {
         case type
         case url
         case signingKey = "signing_key"
+        case recipient
         case deliveriesFailingSince = "deliveries_failing_since"
         case environment
         case state
@@ -79,8 +84,9 @@ public struct SubscriptionOrganizationModel: Codable, JSONEncodable, Hashable {
         try container.encodeIfPresent(organizationGuid, forKey: .organizationGuid)
         try container.encode(name, forKey: .name)
         try container.encode(type, forKey: .type)
-        try container.encode(url, forKey: .url)
+        try container.encodeIfPresent(url, forKey: .url)
         try container.encodeIfPresent(signingKey, forKey: .signingKey)
+        try container.encodeIfPresent(recipient, forKey: .recipient)
         try container.encodeIfPresent(deliveriesFailingSince, forKey: .deliveriesFailingSince)
         try container.encode(environment, forKey: .environment)
         try container.encode(state, forKey: .state)
