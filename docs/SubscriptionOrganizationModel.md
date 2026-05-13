@@ -7,8 +7,9 @@ Name | Type | Description | Notes
 **organizationGuid** | **String** | The organization guid for the subscription. | [optional] 
 **name** | **String** | Name provided for the subscription. | 
 **type** | **String** | The type of subscription. | 
-**url** | **String** | The url for the subscription. | 
-**signingKey** | **String** | Subscription private signing key. | [optional] 
+**url** | **String** | The url for the subscription. Required when subscription_type is webhook. | [optional] 
+**signingKey** | **String** | Subscription private signing key. Optional when subscription_type is webhook. | [optional] 
+**recipient** | **String** | Recipient email address. Required when subscription_type is email. | [optional] 
 **deliveriesFailingSince** | **Date** | ISO8601 datetime the deliveries started failing. | [optional] 
 **environment** | **String** | The environment that the subscription is configured for; one of sandbox or production. | 
 **state** | **String** | The state of the subscription; one of storing, completed, or failed. | 
