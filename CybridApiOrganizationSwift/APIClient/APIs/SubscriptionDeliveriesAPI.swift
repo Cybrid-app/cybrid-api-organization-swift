@@ -123,12 +123,16 @@ open class SubscriptionDeliveriesAPI {
      - parameter guid: (query) Comma separated subscription_delivery_guids to list subscription deliveries for. (optional)
      - parameter subscriptionEventGuid: (query) Comma separated subscription_event_guids to list subscription deliveries for. (optional)
      - parameter subscriptionGuid: (query) Comma separated subscription_guids to list subscription deliveries for. (optional)
+     - parameter state: (query) Comma separated states to list subscription deliveries for. (optional)
+     - parameter eventType: (query) Comma separated event types to list subscription deliveries for. (optional)
+     - parameter completedAtGte: (query) ISO8601 datetime; only deliveries completed at or after this time are returned. (optional)
+     - parameter completedAtLt: (query) ISO8601 datetime; only deliveries completed before this time are returned. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the result
      */
     @discardableResult
-    open class func listSubscriptionDeliveries(page: Int? = nil, perPage: Int? = nil, guid: String? = nil, subscriptionEventGuid: String? = nil, subscriptionGuid: String? = nil, apiResponseQueue: DispatchQueue = CybridApiOrganizationSwiftAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<SubscriptionDeliveryListOrganizationModel, ErrorResponse>) -> Void)) -> RequestTask {
-        return listSubscriptionDeliveriesWithRequestBuilder(page: page, perPage: perPage, guid: guid, subscriptionEventGuid: subscriptionEventGuid, subscriptionGuid: subscriptionGuid).execute(apiResponseQueue) { result in
+    open class func listSubscriptionDeliveries(page: Int? = nil, perPage: Int? = nil, guid: String? = nil, subscriptionEventGuid: String? = nil, subscriptionGuid: String? = nil, state: String? = nil, eventType: String? = nil, completedAtGte: String? = nil, completedAtLt: String? = nil, apiResponseQueue: DispatchQueue = CybridApiOrganizationSwiftAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<SubscriptionDeliveryListOrganizationModel, ErrorResponse>) -> Void)) -> RequestTask {
+        return listSubscriptionDeliveriesWithRequestBuilder(page: page, perPage: perPage, guid: guid, subscriptionEventGuid: subscriptionEventGuid, subscriptionGuid: subscriptionGuid, state: state, eventType: eventType, completedAtGte: completedAtGte, completedAtLt: completedAtLt).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
                 completion(.success(response.body))
@@ -153,9 +157,13 @@ open class SubscriptionDeliveriesAPI {
      - parameter guid: (query) Comma separated subscription_delivery_guids to list subscription deliveries for. (optional)
      - parameter subscriptionEventGuid: (query) Comma separated subscription_event_guids to list subscription deliveries for. (optional)
      - parameter subscriptionGuid: (query) Comma separated subscription_guids to list subscription deliveries for. (optional)
+     - parameter state: (query) Comma separated states to list subscription deliveries for. (optional)
+     - parameter eventType: (query) Comma separated event types to list subscription deliveries for. (optional)
+     - parameter completedAtGte: (query) ISO8601 datetime; only deliveries completed at or after this time are returned. (optional)
+     - parameter completedAtLt: (query) ISO8601 datetime; only deliveries completed before this time are returned. (optional)
      - returns: RequestBuilder<SubscriptionDeliveryListOrganizationModel> 
      */
-    open class func listSubscriptionDeliveriesWithRequestBuilder(page: Int? = nil, perPage: Int? = nil, guid: String? = nil, subscriptionEventGuid: String? = nil, subscriptionGuid: String? = nil) -> RequestBuilder<SubscriptionDeliveryListOrganizationModel> {
+    open class func listSubscriptionDeliveriesWithRequestBuilder(page: Int? = nil, perPage: Int? = nil, guid: String? = nil, subscriptionEventGuid: String? = nil, subscriptionGuid: String? = nil, state: String? = nil, eventType: String? = nil, completedAtGte: String? = nil, completedAtLt: String? = nil) -> RequestBuilder<SubscriptionDeliveryListOrganizationModel> {
         let localVariablePath = "/api/subscription_deliveries"
         let localVariableURLString = CybridApiOrganizationSwiftAPI.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
@@ -167,6 +175,10 @@ open class SubscriptionDeliveriesAPI {
             "guid": guid?.encodeToJSON(),
             "subscription_event_guid": subscriptionEventGuid?.encodeToJSON(),
             "subscription_guid": subscriptionGuid?.encodeToJSON(),
+            "state": state?.encodeToJSON(),
+            "event_type": eventType?.encodeToJSON(),
+            "completed_at_gte": completedAtGte?.encodeToJSON(),
+            "completed_at_lt": completedAtLt?.encodeToJSON(),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
