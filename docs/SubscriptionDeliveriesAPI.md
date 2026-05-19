@@ -111,7 +111,7 @@ Name | Type | Description  | Notes
 
 # **listSubscriptionDeliveries**
 ```swift
-    open class func listSubscriptionDeliveries(page: Int? = nil, perPage: Int? = nil, guid: String? = nil, subscriptionEventGuid: String? = nil, subscriptionGuid: String? = nil, completion: @escaping (_ data: SubscriptionDeliveryListOrganizationModel?, _ error: Error?) -> Void)
+    open class func listSubscriptionDeliveries(page: Int? = nil, perPage: Int? = nil, guid: String? = nil, subscriptionEventGuid: String? = nil, subscriptionGuid: String? = nil, state: String? = nil, eventType: String? = nil, completedAtGte: String? = nil, completedAtLt: String? = nil, completion: @escaping (_ data: SubscriptionDeliveryListOrganizationModel?, _ error: Error?) -> Void)
 ```
 
 Get subscription deliveries list
@@ -128,9 +128,13 @@ let perPage = 987 // Int | The number of entities per page to return. (optional)
 let guid = "guid_example" // String | Comma separated subscription_delivery_guids to list subscription deliveries for. (optional)
 let subscriptionEventGuid = "subscriptionEventGuid_example" // String | Comma separated subscription_event_guids to list subscription deliveries for. (optional)
 let subscriptionGuid = "subscriptionGuid_example" // String | Comma separated subscription_guids to list subscription deliveries for. (optional)
+let state = "state_example" // String | Comma separated states to list subscription deliveries for. (optional)
+let eventType = "eventType_example" // String | Comma separated event types to list subscription deliveries for. (optional)
+let completedAtGte = "completedAtGte_example" // String | ISO8601 datetime; only deliveries completed at or after this time are returned. (optional)
+let completedAtLt = "completedAtLt_example" // String | ISO8601 datetime; only deliveries completed before this time are returned. (optional)
 
 // Get subscription deliveries list
-SubscriptionDeliveriesAPI.listSubscriptionDeliveries(page: page, perPage: perPage, guid: guid, subscriptionEventGuid: subscriptionEventGuid, subscriptionGuid: subscriptionGuid) { (response, error) in
+SubscriptionDeliveriesAPI.listSubscriptionDeliveries(page: page, perPage: perPage, guid: guid, subscriptionEventGuid: subscriptionEventGuid, subscriptionGuid: subscriptionGuid, state: state, eventType: eventType, completedAtGte: completedAtGte, completedAtLt: completedAtLt) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -151,6 +155,10 @@ Name | Type | Description  | Notes
  **guid** | **String** | Comma separated subscription_delivery_guids to list subscription deliveries for. | [optional] 
  **subscriptionEventGuid** | **String** | Comma separated subscription_event_guids to list subscription deliveries for. | [optional] 
  **subscriptionGuid** | **String** | Comma separated subscription_guids to list subscription deliveries for. | [optional] 
+ **state** | **String** | Comma separated states to list subscription deliveries for. | [optional] 
+ **eventType** | **String** | Comma separated event types to list subscription deliveries for. | [optional] 
+ **completedAtGte** | **String** | ISO8601 datetime; only deliveries completed at or after this time are returned. | [optional] 
+ **completedAtLt** | **String** | ISO8601 datetime; only deliveries completed before this time are returned. | [optional] 
 
 ### Return type
 
