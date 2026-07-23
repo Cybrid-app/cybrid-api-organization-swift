@@ -232,4 +232,59 @@ open class SubscriptionsAPI {
 
         return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters)
     }
+
+    /**
+     Patch subscription
+     
+     - parameter subscriptionGuid: (path) Identifier for the subscription. 
+     - parameter patchSubscriptionOrganizationModel: (body)  
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the result
+     */
+    @discardableResult
+    open class func updateSubscription(subscriptionGuid: String, patchSubscriptionOrganizationModel: PatchSubscriptionOrganizationModel, apiResponseQueue: DispatchQueue = CybridApiOrganizationSwiftAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<SubscriptionOrganizationModel, ErrorResponse>) -> Void)) -> RequestTask {
+        return updateSubscriptionWithRequestBuilder(subscriptionGuid: subscriptionGuid, patchSubscriptionOrganizationModel: patchSubscriptionOrganizationModel).execute(apiResponseQueue) { result in
+            switch result {
+            case let .success(response):
+                completion(.success(response.body))
+            case let .failure(error):
+                completion(.failure(error))
+            }
+        }
+    }
+
+    /**
+     Patch subscription
+     - PATCH /api/subscriptions/{subscription_guid}
+     - Update a subscription.  Required scope: **subscriptions:write**
+     - BASIC:
+       - type: http
+       - name: BearerAuth
+     - OAuth:
+       - type: oauth2
+       - name: oauth2
+     - parameter subscriptionGuid: (path) Identifier for the subscription. 
+     - parameter patchSubscriptionOrganizationModel: (body)  
+     - returns: RequestBuilder<SubscriptionOrganizationModel> 
+     */
+    open class func updateSubscriptionWithRequestBuilder(subscriptionGuid: String, patchSubscriptionOrganizationModel: PatchSubscriptionOrganizationModel) -> RequestBuilder<SubscriptionOrganizationModel> {
+        var localVariablePath = "/api/subscriptions/{subscription_guid}"
+        let subscriptionGuidPreEscape = "\(APIHelper.mapValueToPathItem(subscriptionGuid))"
+        let subscriptionGuidPostEscape = subscriptionGuidPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
+        localVariablePath = localVariablePath.replacingOccurrences(of: "{subscription_guid}", with: subscriptionGuidPostEscape, options: .literal, range: nil)
+        let localVariableURLString = CybridApiOrganizationSwiftAPI.basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: patchSubscriptionOrganizationModel)
+
+        let localVariableUrlComponents = URLComponents(string: localVariableURLString)
+
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        let localVariableRequestBuilder: RequestBuilder<SubscriptionOrganizationModel>.Type = CybridApiOrganizationSwiftAPI.requestBuilderFactory.getBuilder()
+
+        return localVariableRequestBuilder.init(method: "PATCH", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters)
+    }
 }

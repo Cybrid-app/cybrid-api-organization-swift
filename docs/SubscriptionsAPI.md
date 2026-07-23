@@ -8,6 +8,7 @@ Method | HTTP request | Description
 [**deleteSubscription**](SubscriptionsAPI.md#deletesubscription) | **DELETE** /api/subscriptions/{subscription_guid} | Delete Subscription
 [**getSubscription**](SubscriptionsAPI.md#getsubscription) | **GET** /api/subscriptions/{subscription_guid} | Get Subscription 
 [**listSubscriptions**](SubscriptionsAPI.md#listsubscriptions) | **GET** /api/subscriptions | Get subscriptions list
+[**updateSubscription**](SubscriptionsAPI.md#updatesubscription) | **PATCH** /api/subscriptions/{subscription_guid} | Patch subscription
 
 
 # **createSubscription**
@@ -214,6 +215,58 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **updateSubscription**
+```swift
+    open class func updateSubscription(subscriptionGuid: String, patchSubscriptionOrganizationModel: PatchSubscriptionOrganizationModel, completion: @escaping (_ data: SubscriptionOrganizationModel?, _ error: Error?) -> Void)
+```
+
+Patch subscription
+
+Update a subscription.  Required scope: **subscriptions:write**
+
+### Example
+```swift
+// The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
+import CybridApiOrganizationSwift
+
+let subscriptionGuid = "subscriptionGuid_example" // String | Identifier for the subscription.
+let patchSubscriptionOrganizationModel = PatchSubscription(name: "name_example") // PatchSubscriptionOrganizationModel | 
+
+// Patch subscription
+SubscriptionsAPI.updateSubscription(subscriptionGuid: subscriptionGuid, patchSubscriptionOrganizationModel: patchSubscriptionOrganizationModel) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **subscriptionGuid** | **String** | Identifier for the subscription. | 
+ **patchSubscriptionOrganizationModel** | [**PatchSubscriptionOrganizationModel**](PatchSubscriptionOrganizationModel.md) |  | 
+
+### Return type
+
+[**SubscriptionOrganizationModel**](SubscriptionOrganizationModel.md)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth), [oauth2](../README.md#oauth2)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
