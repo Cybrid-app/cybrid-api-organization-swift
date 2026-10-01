@@ -163,7 +163,7 @@ Name | Type | Description  | Notes
 
 # **listSubscriptions**
 ```swift
-    open class func listSubscriptions(page: Int? = nil, perPage: Int? = nil, guid: String? = nil, environment: String? = nil, state: String? = nil, completion: @escaping (_ data: SubscriptionListOrganizationModel?, _ error: Error?) -> Void)
+    open class func listSubscriptions(page: Int? = nil, perPage: Int? = nil, guid: String? = nil, environment: String? = nil, state: String? = nil, type: String? = nil, completion: @escaping (_ data: SubscriptionListOrganizationModel?, _ error: Error?) -> Void)
 ```
 
 Get subscriptions list
@@ -180,9 +180,10 @@ let perPage = 987 // Int | The number of entities per page to return. (optional)
 let guid = "guid_example" // String | Comma separated subscription_guids to list subscriptions for. (optional)
 let environment = "environment_example" // String | Environment to list subscriptions for. (optional)
 let state = "state_example" // String | State to list subscriptions for. (optional)
+let type = "type_example" // String | Comma separated types to list subscriptions for. (optional)
 
 // Get subscriptions list
-SubscriptionsAPI.listSubscriptions(page: page, perPage: perPage, guid: guid, environment: environment, state: state) { (response, error) in
+SubscriptionsAPI.listSubscriptions(page: page, perPage: perPage, guid: guid, environment: environment, state: state, type: type) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -203,6 +204,7 @@ Name | Type | Description  | Notes
  **guid** | **String** | Comma separated subscription_guids to list subscriptions for. | [optional] 
  **environment** | **String** | Environment to list subscriptions for. | [optional] 
  **state** | **String** | State to list subscriptions for. | [optional] 
+ **type** | **String** | Comma separated types to list subscriptions for. | [optional] 
 
 ### Return type
 

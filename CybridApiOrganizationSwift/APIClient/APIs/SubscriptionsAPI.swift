@@ -176,12 +176,13 @@ open class SubscriptionsAPI {
      - parameter guid: (query) Comma separated subscription_guids to list subscriptions for. (optional)
      - parameter environment: (query) Environment to list subscriptions for. (optional)
      - parameter state: (query) State to list subscriptions for. (optional)
+     - parameter type: (query) Comma separated types to list subscriptions for. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the result
      */
     @discardableResult
-    open class func listSubscriptions(page: Int? = nil, perPage: Int? = nil, guid: String? = nil, environment: String? = nil, state: String? = nil, apiResponseQueue: DispatchQueue = CybridApiOrganizationSwiftAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<SubscriptionListOrganizationModel, ErrorResponse>) -> Void)) -> RequestTask {
-        return listSubscriptionsWithRequestBuilder(page: page, perPage: perPage, guid: guid, environment: environment, state: state).execute(apiResponseQueue) { result in
+    open class func listSubscriptions(page: Int? = nil, perPage: Int? = nil, guid: String? = nil, environment: String? = nil, state: String? = nil, type: String? = nil, apiResponseQueue: DispatchQueue = CybridApiOrganizationSwiftAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<SubscriptionListOrganizationModel, ErrorResponse>) -> Void)) -> RequestTask {
+        return listSubscriptionsWithRequestBuilder(page: page, perPage: perPage, guid: guid, environment: environment, state: state, type: type).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
                 completion(.success(response.body))
@@ -206,9 +207,10 @@ open class SubscriptionsAPI {
      - parameter guid: (query) Comma separated subscription_guids to list subscriptions for. (optional)
      - parameter environment: (query) Environment to list subscriptions for. (optional)
      - parameter state: (query) State to list subscriptions for. (optional)
+     - parameter type: (query) Comma separated types to list subscriptions for. (optional)
      - returns: RequestBuilder<SubscriptionListOrganizationModel> 
      */
-    open class func listSubscriptionsWithRequestBuilder(page: Int? = nil, perPage: Int? = nil, guid: String? = nil, environment: String? = nil, state: String? = nil) -> RequestBuilder<SubscriptionListOrganizationModel> {
+    open class func listSubscriptionsWithRequestBuilder(page: Int? = nil, perPage: Int? = nil, guid: String? = nil, environment: String? = nil, state: String? = nil, type: String? = nil) -> RequestBuilder<SubscriptionListOrganizationModel> {
         let localVariablePath = "/api/subscriptions"
         let localVariableURLString = CybridApiOrganizationSwiftAPI.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
@@ -220,6 +222,7 @@ open class SubscriptionsAPI {
             "guid": guid?.encodeToJSON(),
             "environment": environment?.encodeToJSON(),
             "state": state?.encodeToJSON(),
+            "type": type?.encodeToJSON(),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
