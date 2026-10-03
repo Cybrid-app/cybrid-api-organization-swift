@@ -42,7 +42,7 @@ public struct SubscriptionOrganizationModel: Codable, JSONEncodable, Hashable {
     /** ISO8601 datetime the subscription is scheduled to be deleted at; events continue to be delivered until then. */
     public var scheduledDeletionAt: Date?
     /** Whether the subscription is protected from deletion. */
-    public var deletionProtected: Bool?
+    public var protectionEnabled: Bool?
     /** The failure code of a subscription (if any) */
     public var failureCode: String?
     /** ISO8601 datetime the record was created at. */
@@ -50,7 +50,7 @@ public struct SubscriptionOrganizationModel: Codable, JSONEncodable, Hashable {
     /** ISO8601 datetime the record was last updated at. */
     public var updatedAt: Date?
 
-    public init(guid: String, organizationGuid: String? = nil, name: String, type: TypeOrganizationModel, url: String? = nil, signingKey: String? = nil, recipient: String? = nil, eventTypes: [String]? = nil, deliveriesFailingSince: Date? = nil, environment: String, state: String, scheduledDeletionAt: Date? = nil, deletionProtected: Bool? = nil, failureCode: String? = nil, createdAt: Date? = nil, updatedAt: Date? = nil) {
+    public init(guid: String, organizationGuid: String? = nil, name: String, type: TypeOrganizationModel, url: String? = nil, signingKey: String? = nil, recipient: String? = nil, eventTypes: [String]? = nil, deliveriesFailingSince: Date? = nil, environment: String, state: String, scheduledDeletionAt: Date? = nil, protectionEnabled: Bool? = nil, failureCode: String? = nil, createdAt: Date? = nil, updatedAt: Date? = nil) {
         self.guid = guid
         self.organizationGuid = organizationGuid
         self.name = name
@@ -63,7 +63,7 @@ public struct SubscriptionOrganizationModel: Codable, JSONEncodable, Hashable {
         self.environment = environment
         self.state = state
         self.scheduledDeletionAt = scheduledDeletionAt
-        self.deletionProtected = deletionProtected
+        self.protectionEnabled = protectionEnabled
         self.failureCode = failureCode
         self.createdAt = createdAt
         self.updatedAt = updatedAt
@@ -82,7 +82,7 @@ public struct SubscriptionOrganizationModel: Codable, JSONEncodable, Hashable {
         case environment
         case state
         case scheduledDeletionAt = "scheduled_deletion_at"
-        case deletionProtected = "deletion_protected"
+        case protectionEnabled = "protection_enabled"
         case failureCode = "failure_code"
         case createdAt = "created_at"
         case updatedAt = "updated_at"
@@ -104,7 +104,7 @@ public struct SubscriptionOrganizationModel: Codable, JSONEncodable, Hashable {
         try container.encode(environment, forKey: .environment)
         try container.encode(state, forKey: .state)
         try container.encodeIfPresent(scheduledDeletionAt, forKey: .scheduledDeletionAt)
-        try container.encodeIfPresent(deletionProtected, forKey: .deletionProtected)
+        try container.encodeIfPresent(protectionEnabled, forKey: .protectionEnabled)
         try container.encodeIfPresent(failureCode, forKey: .failureCode)
         try container.encodeIfPresent(createdAt, forKey: .createdAt)
         try container.encodeIfPresent(updatedAt, forKey: .updatedAt)
