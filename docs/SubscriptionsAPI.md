@@ -25,7 +25,7 @@ Creates a Subscription.  ## Subscription creation  Subscriptions can be created 
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import CybridApiOrganizationSwift
 
-let postSubscriptionOrganizationModel = PostSubscription(environment: "environment_example", type: "type_example", name: "name_example", url: "url_example", recipient: "recipient_example") // PostSubscriptionOrganizationModel | 
+let postSubscriptionOrganizationModel = PostSubscription(environment: "environment_example", type: "type_example", name: "name_example", eventTypes: ["eventTypes_example"], url: "url_example", recipient: "recipient_example") // PostSubscriptionOrganizationModel | 
 
 // Create Subscription
 SubscriptionsAPI.createSubscription(postSubscriptionOrganizationModel: postSubscriptionOrganizationModel) { (response, error) in
@@ -68,7 +68,7 @@ Name | Type | Description  | Notes
 
 Delete Subscription
 
-Schedules a subscription for deletion.  The subscription is not removed immediately: it keeps delivering events until `scheduled_deletion_at`, which is returned on the subscription and is 24 hours after the request by default. A `subscription.deleting` event is published when the deletion is requested and a `subscription.deleted` event when it takes effect. Repeating the request does not move the deadline, and the subscription cannot be modified once a deletion is pending.  Required scope: **subscriptions:execute**
+Schedules a subscription for deletion.  The subscription is not removed immediately: it keeps delivering events until `scheduled_deletion_at`, which is returned on the subscription and is 24 hours after the request by default. A `subscription.deleting` event is published when the deletion is requested and a `subscription.deleted` event when it takes effect. Repeating the request does not move the deadline, and the subscription cannot be modified once a deletion is pending. A subscription with `deletion_protected` set cannot be deleted.  Required scope: **subscriptions:execute**
 
 ### Example
 ```swift

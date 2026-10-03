@@ -31,6 +31,8 @@ public struct SubscriptionOrganizationModel: Codable, JSONEncodable, Hashable {
     public var signingKey: String?
     /** Recipient email address. Required when subscription_type is email. */
     public var recipient: String?
+    /** Event types delivered to the subscription, within those its channel supports; null means no narrowing. */
+    public var eventTypes: [String]?
     /** ISO8601 datetime the deliveries started failing. */
     public var deliveriesFailingSince: Date?
     /** The environment that the subscription is configured for; one of sandbox or production. */
@@ -39,6 +41,8 @@ public struct SubscriptionOrganizationModel: Codable, JSONEncodable, Hashable {
     public var state: String
     /** ISO8601 datetime the subscription is scheduled to be deleted at; events continue to be delivered until then. */
     public var scheduledDeletionAt: Date?
+    /** Whether the subscription is protected from deletion. */
+    public var deletionProtected: Bool?
     /** The failure code of a subscription (if any) */
     public var failureCode: String?
     /** ISO8601 datetime the record was created at. */
@@ -46,7 +50,7 @@ public struct SubscriptionOrganizationModel: Codable, JSONEncodable, Hashable {
     /** ISO8601 datetime the record was last updated at. */
     public var updatedAt: Date?
 
-    public init(guid: String, organizationGuid: String? = nil, name: String, type: TypeOrganizationModel, url: String? = nil, signingKey: String? = nil, recipient: String? = nil, deliveriesFailingSince: Date? = nil, environment: String, state: String, scheduledDeletionAt: Date? = nil, failureCode: String? = nil, createdAt: Date? = nil, updatedAt: Date? = nil) {
+    public init(guid: String, organizationGuid: String? = nil, name: String, type: TypeOrganizationModel, url: String? = nil, signingKey: String? = nil, recipient: String? = nil, eventTypes: [String]? = nil, deliveriesFailingSince: Date? = nil, environment: String, state: String, scheduledDeletionAt: Date? = nil, deletionProtected: Bool? = nil, failureCode: String? = nil, createdAt: Date? = nil, updatedAt: Date? = nil) {
         self.guid = guid
         self.organizationGuid = organizationGuid
         self.name = name
@@ -54,10 +58,12 @@ public struct SubscriptionOrganizationModel: Codable, JSONEncodable, Hashable {
         self.url = url
         self.signingKey = signingKey
         self.recipient = recipient
+        self.eventTypes = eventTypes
         self.deliveriesFailingSince = deliveriesFailingSince
         self.environment = environment
         self.state = state
         self.scheduledDeletionAt = scheduledDeletionAt
+        self.deletionProtected = deletionProtected
         self.failureCode = failureCode
         self.createdAt = createdAt
         self.updatedAt = updatedAt
@@ -71,10 +77,12 @@ public struct SubscriptionOrganizationModel: Codable, JSONEncodable, Hashable {
         case url
         case signingKey = "signing_key"
         case recipient
+        case eventTypes = "event_types"
         case deliveriesFailingSince = "deliveries_failing_since"
         case environment
         case state
         case scheduledDeletionAt = "scheduled_deletion_at"
+        case deletionProtected = "deletion_protected"
         case failureCode = "failure_code"
         case createdAt = "created_at"
         case updatedAt = "updated_at"
@@ -91,10 +99,12 @@ public struct SubscriptionOrganizationModel: Codable, JSONEncodable, Hashable {
         try container.encodeIfPresent(url, forKey: .url)
         try container.encodeIfPresent(signingKey, forKey: .signingKey)
         try container.encodeIfPresent(recipient, forKey: .recipient)
+        try container.encodeIfPresent(eventTypes, forKey: .eventTypes)
         try container.encodeIfPresent(deliveriesFailingSince, forKey: .deliveriesFailingSince)
         try container.encode(environment, forKey: .environment)
         try container.encode(state, forKey: .state)
         try container.encodeIfPresent(scheduledDeletionAt, forKey: .scheduledDeletionAt)
+        try container.encodeIfPresent(deletionProtected, forKey: .deletionProtected)
         try container.encodeIfPresent(failureCode, forKey: .failureCode)
         try container.encodeIfPresent(createdAt, forKey: .createdAt)
         try container.encodeIfPresent(updatedAt, forKey: .updatedAt)
