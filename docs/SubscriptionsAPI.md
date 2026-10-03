@@ -68,7 +68,7 @@ Name | Type | Description  | Notes
 
 Delete Subscription
 
-Deletes a subscription.  Required scope: **subscriptions:execute**
+Schedules a subscription for deletion.  The subscription is not removed immediately: it keeps delivering events until `scheduled_deletion_at`, which is returned on the subscription and is 24 hours after the request by default. A `subscription.deleting` event is published when the deletion is requested and a `subscription.deleted` event when it takes effect. Repeating the request does not move the deadline, and the subscription cannot be modified once a deletion is pending.  Required scope: **subscriptions:execute**
 
 ### Example
 ```swift
