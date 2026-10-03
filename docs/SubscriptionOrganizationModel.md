@@ -10,10 +10,12 @@ Name | Type | Description | Notes
 **url** | **String** | The url for the subscription. Required when subscription_type is webhook. | [optional] 
 **signingKey** | **String** | Subscription private signing key. Optional when subscription_type is webhook. | [optional] 
 **recipient** | **String** | Recipient email address. Required when subscription_type is email. | [optional] 
+**eventTypes** | **[String]** | Event types delivered to the subscription, within those its channel supports; null means no narrowing. | [optional] 
 **deliveriesFailingSince** | **Date** | ISO8601 datetime the deliveries started failing. | [optional] 
 **environment** | **String** | The environment that the subscription is configured for; one of sandbox or production. | 
 **state** | **String** | The state of the subscription; one of storing, completed, or failed. | 
 **scheduledDeletionAt** | **Date** | ISO8601 datetime the subscription is scheduled to be deleted at; events continue to be delivered until then. | [optional] 
+**deletionProtected** | **Bool** | Whether the subscription is protected from deletion. | [optional] 
 **failureCode** | **String** | The failure code of a subscription (if any) | [optional] 
 **createdAt** | **Date** | ISO8601 datetime the record was created at. | [optional] 
 **updatedAt** | **Date** | ISO8601 datetime the record was last updated at. | [optional] 

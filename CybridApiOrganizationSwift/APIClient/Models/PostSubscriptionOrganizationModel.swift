@@ -23,21 +23,79 @@ public struct PostSubscriptionOrganizationModel: Codable, JSONEncodable, Hashabl
         case email = "email"
         case unknownDefaultOpenApi = "unknown_default_open_api"
     }
+    public enum EventTypesOrganizationModel: String, Codable, CaseIterable, CaseIterableDefaultsLast {
+        case tradePeriodStoring = "trade.storing"
+        case tradePeriodPending = "trade.pending"
+        case tradePeriodExecuted = "trade.executed"
+        case tradePeriodCancelled = "trade.cancelled"
+        case tradePeriodCompleted = "trade.completed"
+        case tradePeriodSettling = "trade.settling"
+        case tradePeriodFailed = "trade.failed"
+        case transferPeriodStoring = "transfer.storing"
+        case transferPeriodPending = "transfer.pending"
+        case transferPeriodHolding = "transfer.holding"
+        case transferPeriodReviewing = "transfer.reviewing"
+        case transferPeriodCancelling = "transfer.cancelling"
+        case transferPeriodCompleted = "transfer.completed"
+        case transferPeriodFailed = "transfer.failed"
+        case identityVerificationPeriodStoring = "identity_verification.storing"
+        case identityVerificationPeriodPending = "identity_verification.pending"
+        case identityVerificationPeriodReviewing = "identity_verification.reviewing"
+        case identityVerificationPeriodWaiting = "identity_verification.waiting"
+        case identityVerificationPeriodExpired = "identity_verification.expired"
+        case identityVerificationPeriodCompleted = "identity_verification.completed"
+        case planPeriodStoring = "plan.storing"
+        case planPeriodPlanning = "plan.planning"
+        case planPeriodCompleted = "plan.completed"
+        case planPeriodFailed = "plan.failed"
+        case executionPeriodStoring = "execution.storing"
+        case executionPeriodExecuting = "execution.executing"
+        case executionPeriodCompleted = "execution.completed"
+        case executionPeriodFailed = "execution.failed"
+        case accountPeriodMinimumsPeriodFundingPullPeriodBelowMinimum = "account.minimums.funding_pull.below_minimum"
+        case accountPeriodMinimumsPeriodFundingPullPeriodNearMinimum = "account.minimums.funding_pull.near_minimum"
+        case externalBankAccountPeriodStoring = "external_bank_account.storing"
+        case externalBankAccountPeriodPending = "external_bank_account.pending"
+        case externalBankAccountPeriodReviewing = "external_bank_account.reviewing"
+        case externalBankAccountPeriodCompleted = "external_bank_account.completed"
+        case externalBankAccountPeriodFailed = "external_bank_account.failed"
+        case externalBankAccountPeriodExpired = "external_bank_account.expired"
+        case externalBankAccountPeriodRefreshRequired = "external_bank_account.refresh_required"
+        case externalBankAccountPeriodUnverified = "external_bank_account.unverified"
+        case externalBankAccountPeriodDeleting = "external_bank_account.deleting"
+        case externalBankAccountPeriodDeleted = "external_bank_account.deleted"
+        case externalWalletPeriodStoring = "external_wallet.storing"
+        case externalWalletPeriodPending = "external_wallet.pending"
+        case externalWalletPeriodReviewing = "external_wallet.reviewing"
+        case externalWalletPeriodCompleted = "external_wallet.completed"
+        case externalWalletPeriodFailed = "external_wallet.failed"
+        case externalWalletPeriodDeleting = "external_wallet.deleting"
+        case externalWalletPeriodDeleted = "external_wallet.deleted"
+        case subscriptionPeriodStoring = "subscription.storing"
+        case subscriptionPeriodCompleted = "subscription.completed"
+        case subscriptionPeriodFailed = "subscription.failed"
+        case subscriptionPeriodDeleting = "subscription.deleting"
+        case subscriptionPeriodDeleted = "subscription.deleted"
+        case unknownDefaultOpenApi = "unknown_default_open_api"
+    }
     /** The environment that the subscription is configured for. */
     public var environment: EnvironmentOrganizationModel
     /** Type of the subscription. */
     public var type: TypeOrganizationModel
     /** Name provided for the subscription. */
     public var name: String
+    /** Event types delivered to the subscription, within those its channel supports; omitted or null means no narrowing. */
+    public var eventTypes: [EventTypesOrganizationModel]?
     /** URL provided for the subscription. Required when type is webhook. */
     public var url: String?
     /** Recipient email address. Required when type is email. */
     public var recipient: String?
 
-    public init(environment: EnvironmentOrganizationModel, type: TypeOrganizationModel, name: String, url: String? = nil, recipient: String? = nil) {
+    public init(environment: EnvironmentOrganizationModel, type: TypeOrganizationModel, name: String, eventTypes: [EventTypesOrganizationModel]? = nil, url: String? = nil, recipient: String? = nil) {
         self.environment = environment
         self.type = type
         self.name = name
+        self.eventTypes = eventTypes
         self.url = url
         self.recipient = recipient
     }
@@ -46,6 +104,7 @@ public struct PostSubscriptionOrganizationModel: Codable, JSONEncodable, Hashabl
         case environment
         case type
         case name
+        case eventTypes = "event_types"
         case url
         case recipient
     }
@@ -57,6 +116,7 @@ public struct PostSubscriptionOrganizationModel: Codable, JSONEncodable, Hashabl
         try container.encode(environment, forKey: .environment)
         try container.encode(type, forKey: .type)
         try container.encode(name, forKey: .name)
+        try container.encodeIfPresent(eventTypes, forKey: .eventTypes)
         try container.encodeIfPresent(url, forKey: .url)
         try container.encodeIfPresent(recipient, forKey: .recipient)
     }
