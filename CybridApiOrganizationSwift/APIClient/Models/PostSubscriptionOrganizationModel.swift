@@ -71,6 +71,8 @@ public struct PostSubscriptionOrganizationModel: Codable, JSONEncodable, Hashabl
         case externalWalletPeriodFailed = "external_wallet.failed"
         case externalWalletPeriodDeleting = "external_wallet.deleting"
         case externalWalletPeriodDeleted = "external_wallet.deleted"
+        case bankPeriodCreated = "bank.created"
+        case bankPeriodUpdated = "bank.updated"
         case subscriptionPeriodStoring = "subscription.storing"
         case subscriptionPeriodCompleted = "subscription.completed"
         case subscriptionPeriodFailed = "subscription.failed"
