@@ -13,6 +13,7 @@ Name | Type | Description | Notes
 **deliveriesFailingSince** | **Date** | ISO8601 datetime the deliveries started failing. | [optional] 
 **environment** | **String** | The environment that the subscription is configured for; one of sandbox or production. | 
 **state** | **String** | The state of the subscription; one of storing, completed, or failed. | 
+**scheduledDeletionAt** | **Date** | ISO8601 datetime the subscription is scheduled to be deleted at; events continue to be delivered until then. | [optional] 
 **failureCode** | **String** | The failure code of a subscription (if any) | [optional] 
 **createdAt** | **Date** | ISO8601 datetime the record was created at. | [optional] 
 **updatedAt** | **Date** | ISO8601 datetime the record was last updated at. | [optional] 
