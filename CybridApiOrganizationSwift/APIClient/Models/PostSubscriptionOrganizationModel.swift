@@ -78,6 +78,9 @@ public struct PostSubscriptionOrganizationModel: Codable, JSONEncodable, Hashabl
         case subscriptionPeriodFailed = "subscription.failed"
         case subscriptionPeriodDeleting = "subscription.deleting"
         case subscriptionPeriodDeleted = "subscription.deleted"
+        case credentialPeriodCreated = "credential.created"
+        case credentialPeriodUpdated = "credential.updated"
+        case credentialPeriodDeleted = "credential.deleted"
         case unknownDefaultOpenApi = "unknown_default_open_api"
     }
     /** The environment that the subscription is configured for. */
