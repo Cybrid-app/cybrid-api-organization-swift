@@ -34,7 +34,7 @@ open class SubscriptionsAPI {
     /**
      Create Subscription
      - POST /api/subscriptions/
-     - Creates a Subscription.  ## Subscription creation  Subscriptions can be created for webhook endpoints.  ## State  | State | Description | |-------|-------------| | storing | The Platform is storing the subscription details in our private store | | completed | The Platform has created the subscription | | failed | The Platform was not able to successfully create the subscription |    Required scope: **subscriptions:execute
+     - Creates a Subscription.  ## Subscription creation  Subscriptions can be created for webhook endpoints.  ## State  | State | Description | |-------|-------------| | storing | The Platform is storing the subscription details in our private store | | completed | The Platform has created the subscription | | failed | The Platform was not able to successfully create the subscription |  Required scope: **subscriptions:execute**
      - BASIC:
        - type: http
        - name: BearerAuth
